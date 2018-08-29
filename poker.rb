@@ -1,22 +1,11 @@
-def deck(cards)
-    if cards.is_a?(String)
-        return "random"
-    elsif cards.is_a?(Array)
-        cards.each do |v|
-            v.upcase!
-            if v.length != 2
-                return false
-            end
+def deck()
+    values = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]
+    suites = ["C", "D", "H", "S"]
+    new_arr = []
+    suites.each do |v|
+        values.each do |card|
+            new_arr << "#{card}#{v}"
         end
-        temp = cards.length
-        cards.uniq!
-        if cards.length > 5
-            return false
-        elsif cards.length != temp
-            return false
-        end
-        return cards
-    else
-        return false
     end
+    new_arr
 end
