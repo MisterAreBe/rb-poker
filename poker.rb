@@ -4,6 +4,9 @@ def deck(cards)
     elsif cards.is_a?(Array)
         cards.each do |v|
             v.upcase!
+            if v.length != 2
+                return false
+            end
         end
         temp = cards.length
         cards.uniq!
