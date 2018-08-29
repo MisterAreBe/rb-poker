@@ -8,7 +8,11 @@ class Poker < Minitest::Test
     end
 
     def test_assert_2H_equals_2_heart
-        assert_equal("2H", deck(["2h"]))
+        assert_equal(["2H"], deck(["2h"]))
+    end
+
+    def test_assert_7H_equals_7_heart
+        assert_equal(["7H"], deck(["7h"]))
     end
 
 end

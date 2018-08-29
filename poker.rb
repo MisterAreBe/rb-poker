@@ -1,3 +1,3 @@
 def deck(cards)
-    "2H"
+    ["2H"]
 end
