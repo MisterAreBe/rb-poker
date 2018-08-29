@@ -30,4 +30,8 @@ class Poker < Minitest::Test
     def test_assert_invalid_card_fails
         assert_equal(false, deck(["89p"]))
     end
+
+    def test_assert_other_invalid_cards_fail
+        assert_equal(false, deck(["2w"]))
+    end
 end
