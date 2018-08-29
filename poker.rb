@@ -1,3 +1,6 @@
 def deck(cards)
-    ["2H"]
+    cards.each do |v|
+        v.upcase!
+    end
+    cards
 end
