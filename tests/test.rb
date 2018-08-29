@@ -20,6 +20,6 @@ class Poker < Minitest::Test
     end
 
     def test_fail_for_dupe_cards
-        assert_equal(false, deck(["ah, ad, ah"]))
+        assert_equal(false, deck(["ah", "ad", "ah"]))
     end
 end

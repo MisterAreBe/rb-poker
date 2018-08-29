@@ -5,6 +5,11 @@ def deck(cards)
         cards.each do |v|
             v.upcase!
         end
+        temp = cards.length
+        cards.uniq!
+        unless cards.length == temp
+            return false
+        end
         return cards
     else
         return false
