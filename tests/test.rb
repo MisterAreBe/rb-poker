@@ -15,4 +15,8 @@ class Poker < Minitest::Test
         assert_equal(["7H"], deck(["7h"]))
     end
 
+    def test_assert_R_equals_random
+        assert_equal("random", deck("r"))
+    end
+
 end
