@@ -7,7 +7,9 @@ def deck(cards)
         end
         temp = cards.length
         cards.uniq!
-        unless cards.length == temp
+        if cards.length > 5
+            return false
+        elsif cards.length != temp
             return false
         end
         return cards
