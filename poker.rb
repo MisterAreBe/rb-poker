@@ -39,9 +39,62 @@ end
 
 class Card
     def initialize(cards)
-        @card_list = cards[0]
+        @cards = cards
+        return @cards
     end
-    attr_reader :card_list
+
+    def long_hand(card_list)
+        @name_list = []
+        @card_value = []
+        @card_suite = []
+        @temp = card_list.join("")
+        @temp = @temp.split("")
+        @temp.each do |v|
+            case v.upcase
+            when "2"
+                @card_value << "Two"
+            when "3"
+                @card_value << "Three"
+            when "4"
+                @card_value << "Four"
+            when "5"
+                @card_value << "Five"
+            when "6"
+                @card_value << "Six"
+            when "7"
+                @card_value << "Seven"
+            when "8"
+                @card_value << "Eight"
+            when "9"
+                @card_value << "Nine"
+            when "T"
+                @card_value << "Ten"
+            when "J"
+                @card_value << "Jack"
+            when "Q"
+                @card_value << "Queen"
+            when "K"
+                @card_value << "King"
+            when "A"
+                @card_value << "Ace"
+            when "S"
+                @card_suite << "of Spades"
+            when "Diamonds"
+                @card_suite << "of Diamonds"
+            when "Hearts"
+                @card_suite << "of Hearts"
+            when "Clubs"
+                @card_suite << "of Clubs"
+            end
+        end
+        card_list.each_with_index do |v,i|
+            @name_list << "#{@card_value[i]} #{@card_suite[i]}"
+        end
+        return @name_list
+    end
+
+    attr_reader :cards
+    attr_reader :name_list
 end
 
 

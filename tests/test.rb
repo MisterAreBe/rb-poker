@@ -30,19 +30,25 @@ class Poker < Minitest::Test
 
     def test_deal_2_hands
         deck = Deck.new
+        #p "this is deck #{deck}"
         deck.shuffle()
+        #p "this is deck after shuffle #{deck}"
         hands = deck.deal(2)
+        #p "this is deck after deal #{deck}"
+        #p "this is hands #{hands}"
         assert_equal(2, hands.length)
         #p hands
     end
 
     def test_card_returns_name
         single_card = Card.new(["7H"])
-        assert_equal("7H", single_card.card_list)
+        assert_equal(["7H"], single_card.cards)
     end
 
-    def test_card_short_hand
-        single_card = Card.new(["QD"])
-        assert_equal(["QD"], single_card.short_hand())
+    def test_card_long_hand
+        card = Card.new(["AS"])
+        cards = card.cards
+        single_card = card.long_hand(cards)
+        assert_equal(["Ace of Spades"], single_card)
     end
  end
