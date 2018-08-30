@@ -8,8 +8,15 @@ class Poker < Minitest::Test
     end
 
     def test_assert_deck_length
-        deck = Deck.new
-        assert_equal(52, deck.new().length)
+        deck = Deck.new.deck
+        assert_equal(52, deck.length)
+    end
+
+    def test_shuffle_will_shuffle
+        deck1 = Deck.new.deck
+        deck2 = Deck.new.deck
+        #deck2.shuffle()
+        refute_equal(deck1, deck2)
     end
 
 
