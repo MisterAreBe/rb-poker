@@ -57,6 +57,16 @@ class Card
             end
         end
         @card_suite = @temp_card[1]
+        case @card_suite
+        when "S"
+            @card_suite = "Spades"
+        when "C"
+            @card_suite = "Clubs"
+        when "D"
+            @card_suite = "Diamonds"
+        when "H"
+            @card_suite = "Hearts"
+        end
         @card_longhand = ""
         @temp_card.each do |v|
             case v.upcase
