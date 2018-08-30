@@ -15,6 +15,16 @@ class Deck
         @deck = @deck.shuffle!
     end
 
+    def deal(deck)
+        @hand = []
+        @counter = 0
+        5.times do
+            @hand << deck[@counter]
+            @counter += 1
+        end
+        @hand
+    end
 
+    attr_reader :hand
     attr_reader :deck
 end
