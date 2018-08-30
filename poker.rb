@@ -114,7 +114,13 @@ class Card
     attr_reader :card_longhand
 end
 
+class Hand
+    def initialize()
+        @cards = []
+    end
 
+    attr_accessor :hand
+end
 
 
 
