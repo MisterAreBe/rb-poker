@@ -8,7 +8,8 @@ class Poker < Minitest::Test
     end
 
     def test_assert_deck_length
-        assert_equal(52, deck().length)
+        deck = Deck.new
+        assert_equal(52, deck.new().length)
     end
 
 
