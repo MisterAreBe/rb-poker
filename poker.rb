@@ -11,6 +11,10 @@ class Deck
         @deck
     end
 
+    def shuffle()
+        @deck = @deck.shuffle!
+    end
+
 
     attr_reader :deck
 end

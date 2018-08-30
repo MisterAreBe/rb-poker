@@ -14,9 +14,9 @@ class Poker < Minitest::Test
 
     def test_shuffle_will_shuffle
         deck1 = Deck.new.deck
-        deck2 = Deck.new.deck
-        #deck2.shuffle()
+        deck2 = Deck.new.deck.shuffle
         refute_equal(deck1, deck2)
+        p deck1; p deck2
     end
 
 
