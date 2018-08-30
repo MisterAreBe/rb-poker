@@ -55,6 +55,10 @@ class Poker < Minitest::Test
         assert_equal("10", card.card_value)
     end
 
+    def test_card_returns_suite
+        card = Card.new("2S")
+        assert_equal("Spades", card.card_suite)
+    end
 
 
  end
