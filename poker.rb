@@ -37,8 +37,12 @@ class Deck
     attr_reader :deck
 end
 
-
-
+class Card
+    def initialize(cards)
+        @card = cards[0] 
+    end
+    attr_reader :card
+end
 
 
 

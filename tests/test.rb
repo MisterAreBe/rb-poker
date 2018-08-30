@@ -38,6 +38,6 @@ class Poker < Minitest::Test
 
     def test_card_returns_name
         single_card = Card.new(["7H"])
-        assert_equal("7H", single_card.short_hand())
+        assert_equal("7H", single_card.card)
     end
  end
