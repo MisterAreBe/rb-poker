@@ -37,3 +37,4 @@ class Deck
     attr_reader :hands
     attr_reader :deck
 end
+

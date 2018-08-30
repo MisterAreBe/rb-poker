@@ -34,12 +34,16 @@ class Poker < Minitest::Test
         #p hands
     end
 
-    def test_hand_values_are_integers
-        deck = Deck.new.shuffle
-        hands = Deck.new.deal(deck, 2)
-        value = Score.new(hands.values)
-        assert_equal(Integer, value.class)
+    def test_score_class_returns_numbers
+        var = Score.new(["2D"])
+        assert_equal(Integer, var.class)
     end
 
+    # def test_hand_values_are_integers
+    #     deck = Deck.new.shuffle
+    #     hands = Deck.new.deal(deck, 2)
+    #     value = Score.new(hands.values)
+    #     assert_equal(Integer, value.class)
+    # end
 
 end
