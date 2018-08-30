@@ -39,9 +39,9 @@ end
 
 class Card
     def initialize(cards)
-        @card = cards[0] 
+        @card_list = cards[0]
     end
-    attr_reader :card
+    attr_reader :card_list
 end
 
 
