@@ -19,6 +19,12 @@ class Poker < Minitest::Test
         p deck1; p deck2
     end
 
+    def test_deal_hand
+        deck = Deck.new.deck.shuffle
+        hand = deck.deal(1)
+        assert_equal(5, hand)
+    end
+
 
 
 end
