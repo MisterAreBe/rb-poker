@@ -15,7 +15,7 @@ class Deck
         @deck = @deck.shuffle!
     end
 
-    def deal(deck, players)
+    def deal(players)
         @hands = Hash.new
         @cards_per_hand = 5
         while players > 0
@@ -25,9 +25,8 @@ class Deck
         @temp = @hands.values
         @cards_per_hand.times do
             @hands.each do |key, value|
-                value << deck[0]
+                value << @deck.pop
                 @hands[key] = value
-                deck.delete_at(0)
             end
         end
         @hands
@@ -38,3 +37,37 @@ class Deck
     attr_reader :deck
 end
 
+
+
+
+
+
+
+
+# class Score
+#     def initialize(cards)
+#         @score = 0
+#         cards.each do |hand|
+#             hand.each do |v|
+#                 @temp = v.slice(0)
+#                 if @temp.to_i > 1
+#                     @score += @temp.to_i
+#                 else
+#                     case @temp
+#                     when "T"
+#                         @score += 10
+#                     when "J"
+#                         @score += 11
+#                     when "Q"
+#                         @score += 12
+#                     when "K"
+#                         @score += 13
+#                     when "A"
+#                         @score += 14
+#                     end
+#                 end
+#             end
+#         end
+#         @score
+#     end
+# end

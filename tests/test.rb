@@ -18,32 +18,26 @@ class Poker < Minitest::Test
         refute_equal(deck1, deck2)
         #p deck1; p deck2
     end
-
+    
     def test_deal_hand
-        deck = Deck.new.shuffle
-        hand = Deck.new.deal(deck, 1)
+        deck = Deck.new
+        deck.shuffle()
+        hand = deck.deal(1)
         temp = hand.values
         assert_equal(5, temp[0].length)
         #p hand
     end
 
     def test_deal_2_hands
-        deck = Deck.new.shuffle
-        hands = Deck.new.deal(deck, 2)
+        deck = Deck.new
+        deck.shuffle()
+        hands = deck.deal(2)
         assert_equal(2, hands.length)
         #p hands
     end
 
-    def test_score_class_returns_numbers
-        var = Score.new(["2D"])
-        assert_equal(Integer, var.class)
+    def test_card_returns_name
+        single_card = Card.new(["7H"])
+        assert_equal("7H", single_card.short_hand())
     end
-
-    # def test_hand_values_are_integers
-    #     deck = Deck.new.shuffle
-    #     hands = Deck.new.deal(deck, 2)
-    #     value = Score.new(hands.values)
-    #     assert_equal(Integer, value.class)
-    # end
-
-end
+ end
