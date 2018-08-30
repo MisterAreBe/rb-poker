@@ -119,7 +119,7 @@ class Hand
         @cards = []
     end
 
-    attr_accessor :hand
+    attr_accessor :cards
 end
 
 
