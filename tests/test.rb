@@ -41,14 +41,15 @@ class Poker < Minitest::Test
     end
 
     def test_card_returns_name
-        single_card = Card.new(["7H"])
-        assert_equal(["7H"], single_card.cards)
+        single_card = Card.new("7H")
+        assert_equal("7H", single_card.card)
     end
 
     def test_card_long_hand
-        card = Card.new(["AS"])
-        cards = card.cards
-        single_card = card.long_hand(cards)
-        assert_equal(["Ace of Spades"], single_card)
+        card = Card.new("AS")
+        assert_equal("Ace of Spades", card.card_longhand)
     end
+
+
+
  end

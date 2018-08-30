@@ -38,63 +38,70 @@ class Deck
 end
 
 class Card
-    def initialize(cards)
-        @cards = cards
-        return @cards
-    end
-
-    def long_hand(card_list)
-        @name_list = []
-        @card_value = []
-        @card_suite = []
-        @temp = card_list.join("")
-        @temp = @temp.split("")
-        @temp.each do |v|
-            case v.upcase
-            when "2"
-                @card_value << "Two"
-            when "3"
-                @card_value << "Three"
-            when "4"
-                @card_value << "Four"
-            when "5"
-                @card_value << "Five"
-            when "6"
-                @card_value << "Six"
-            when "7"
-                @card_value << "Seven"
-            when "8"
-                @card_value << "Eight"
-            when "9"
-                @card_value << "Nine"
+    def initialize(card)
+        @card = card
+        @temp_card = @card.split("")
+        @card_value = @temp_card[0]
+        if @card_value.to_i == 0
+            case @card_value
             when "T"
-                @card_value << "Ten"
+                @card_value = "10"
             when "J"
-                @card_value << "Jack"
+                @card_suite = "11"
             when "Q"
-                @card_value << "Queen"
+                @card_value = "12"
             when "K"
-                @card_value << "King"
+                @card_value = "13"
             when "A"
-                @card_value << "Ace"
-            when "S"
-                @card_suite << "of Spades"
-            when "Diamonds"
-                @card_suite << "of Diamonds"
-            when "Hearts"
-                @card_suite << "of Hearts"
-            when "Clubs"
-                @card_suite << "of Clubs"
+                @card_value = "14"
             end
         end
-        card_list.each_with_index do |v,i|
-            @name_list << "#{@card_value[i]} #{@card_suite[i]}"
+        @card_suite = @temp_card[1]
+        @card_longhand = ""
+        @temp_card.each do |v|
+            case v.upcase
+            when "2"
+                @card_longhand += "Two"
+            when "3"
+                @card_longhand += "Three"
+            when "4"
+                @card_longhand += "Four"
+            when "5"
+                @card_longhand += "Five"
+            when "6"
+                @card_longhand += "Six"
+            when "7"
+                @card_longhand += "Seven"
+            when "8"
+                @card_longhand += "Eight"
+            when "9"
+                @card_longhand += "Nine"
+            when "T"
+                @card_longhand += "Ten"
+            when "J"
+                @card_longhand += "Jack"
+            when "Q"
+                @card_longhand += "Queen"
+            when "K"
+                @card_longhand += "King"
+            when "A"
+                @card_longhand += "Ace"
+            when "S"
+                @card_longhand += " of Spades"
+            when "D"
+                @card_longhand += " of Diamonds"
+            when "H"
+                @card_longhand += " of Hearts"
+            when "C"
+                @card_longhand += " of Clubs"
+            end
         end
-        return @name_list
     end
 
-    attr_reader :cards
-    attr_reader :name_list
+    attr_reader :card
+    attr_reader :card_value
+    attr_reader :card_suite
+    attr_reader :card_longhand
 end
 
 
