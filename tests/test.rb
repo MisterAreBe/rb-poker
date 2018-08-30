@@ -70,5 +70,12 @@ class Poker < Minitest::Test
         assert_equal(Array, hand.cards.class)
     end
 
+    def test_add_cards_to_hand
+        hand = Hand.new
+        card = Card.new("JD")
+        hand.cards << card.card
+        assert_equal(["JD"], hand.cards)
+    end
+
 
  end
