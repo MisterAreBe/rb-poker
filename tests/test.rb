@@ -50,6 +50,11 @@ class Poker < Minitest::Test
         assert_equal("Ace of Spades", card.card_longhand)
     end
 
+    def test_card_returns_value
+        card = Card.new("TC")
+        assert_equal("10", card.card_value)
+    end
+
 
 
  end
