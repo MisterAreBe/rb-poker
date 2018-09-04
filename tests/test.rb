@@ -86,4 +86,11 @@ class Poker < Minitest::Test
         assert_equal("Hearts", hand.cards[0].card_suite)
     end
 
+    def test_2_players_deck_42_cards
+        poker_deck = Deck.new
+        poker_deck.shuffle()
+        poker_deck.deal(2)
+        assert_equal(42, poker_deck.deck.length)
+    end
+
  end
