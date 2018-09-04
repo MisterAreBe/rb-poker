@@ -142,8 +142,10 @@ class Poker < Minitest::Test
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got Four of a Kind!", game.player_got[-1])
-        
         assert_equal(["Player2 got Four of a Kind!", "Player1 got Four of a Kind!"], game.player_got)
+        # But who won? Lets check the highest card!
+        assert_equal(["King of Hearts", "Ace of Hearts"], game.high_card)
+        # Aces are high btw, player1 wins :P
     end
 
 
