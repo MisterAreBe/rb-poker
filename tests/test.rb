@@ -133,18 +133,18 @@ class Poker < Minitest::Test
         hand.add(Card.new("AD"))
         hand.add(Card.new("5D"))
         hand2 = Hand.new
-        hand2.add(Card.new("KH"))
+        hand2.add(Card.new("9D"))
         hand2.add(Card.new("KC"))
         hand2.add(Card.new("KS"))
         hand2.add(Card.new("KD"))
-        hand2.add(Card.new("9D"))
+        hand2.add(Card.new("KH"))
         hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Four of a Kind!", game.player_got[-1])
         assert_equal(["Player2 got, a Four of a Kind!", "Player1 got, a Four of a Kind!"], game.player_got)
         # But who won? Lets check th,e highest card!
-        assert_equal(["Player2's high card is King of Hearts", "Player1's high card is Ace of Hearts"], game.high_card)
+        assert_equal(["Player2's high card is King of Clubs", "Player1's high card is Ace of Hearts"], game.high_card)
         # Aces are high btw, player1 wins :P
     end
 

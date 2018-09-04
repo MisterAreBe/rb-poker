@@ -177,13 +177,33 @@ class Hand_checker
     # Used to check if the hand is a four of a kind
     def four_kind(value)
         @check_four = 0
-        value.all? do |x| 
-            if x == value[0]
+        value.sort.each do |x|
+            if x == value[2]
                 @check_four += 1
             end
         end
         if @check_four == 4
             return true
+        end
+        false
+    end
+
+    # Used to check if the hand is a full house
+    def full_house(value)
+        @check_three = 0
+        @check_duce = 0
+        @duce = []
+        value.sort.each do |v|
+            if v == value[2]
+                @check_three += 1
+            else
+                @duce << v
+            end
+        end
+        if @duce.length == 2
+            if @duce[0] == @duce[1] && @check_three == 3
+                return true
+            end
         end
         false
     end
@@ -197,16 +217,21 @@ class Hand_checker
             @suit = []
             @value = []
             @card_list = []
+            
             hash_hands[@temp].cards.each do |card|
                 @suit << card.card_suit
                 @value << card.card_value
                 @card_list << card
             end
+
             @got_string = "Player#{@counter + 1} got, a "
+
             if straight_flush(@suit, @value)
                 @player_got << "#{@got_string}Straight Flush!"
             elsif four_kind(@value)
                 @player_got << "#{@got_string}Four of a Kind!"
+            elsif full_house(@value)
+                @player_got << "#{@got_string}Full House!"
             end
 
             @high_card << "Player#{@counter + 1}'s high card is #{high_card?(@card_list)}"
