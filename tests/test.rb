@@ -148,5 +148,19 @@ class Poker < Minitest::Test
         # Aces are high btw, player1 wins :P
     end
 
+    def test_full_house
+        hand2 = Hand.new
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("TC"))
+        hand2.add(Card.new("TS"))
+        hand2.add(Card.new("3D"))
+        hand2.add(Card.new("3S"))
+        hash = {"player2" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 got, a Full House!", game.player_got[-1])
+        # This is where it's gonna get tricky
+    end
+
 
  end
