@@ -124,21 +124,36 @@ class Deck
     attr_reader :deck
 end
 
-def array_increments?(array)
-    sorted = array.sort
-    last_num = sorted[0]
-    sorted[1, sorted.count].each do |v|
-        if last_num + 1 != v
-            return false
-        end
-        last_num = v
-    end
-    true
-end
-
 class Hand_checker
     def initialize() 
         @player_got = []
+        @high_card = []
+    end
+
+    def array_increments?(array)
+        @sorted = array.sort
+        @last_num = @sorted[0]
+        @sorted[1, @sorted.count].each do |v|
+            if @last_num + 1 != v
+                return false
+            end
+            @last_num = v
+        end
+        true
+    end
+
+    def high_card?(card_list)
+        @num_list = []
+        card_list.each do |v|
+            @num_list << v.card_value
+        end
+        @num_list.sort!
+        @highest = @num_list[-1]
+        card_list.each do |v|
+            if v.card_value == @highest
+                return v.card_longhand
+            end
+        end
     end
 
     def straight_flush(suit,value)
@@ -151,10 +166,9 @@ class Hand_checker
             @is_flush = true
         end
         if @is_suit && @is_flush
-            return true
-        else 
-            return false
+            return true 
         end
+        false
     end
 
     def check(hash_hands)
@@ -163,16 +177,21 @@ class Hand_checker
             @temp = hash_hands.keys[@counter]
             @suit = []
             @value = []
+            @card_list = []
             hash_hands[@temp].cards.each do |card|
                 @suit << card.card_suit
                 @value << card.card_value
+                @card_list << card
             end
             if straight_flush(@suit, @value)
                 @player_got << "Player#{@counter + 1} got a Straight Flush!"
             end
+
+            @high_card << high_card?(@card_list)
             @counter -= 1
         end
     end
 
     attr_reader :player_got
+    attr_reader :high_card
 end
