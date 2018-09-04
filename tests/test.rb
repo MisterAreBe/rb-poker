@@ -101,7 +101,7 @@ class Poker < Minitest::Test
         hash = {"player1" => hand}
         game = Hand_checker.new
         game.check(hash)
-        assert_equal(["Player1 got a Straight Flush!"], game.player_got)
+        assert_equal(["Player1 got, a Straight Flush!"], game.player_got)
     end
 
     def test_2_hands_got
@@ -120,9 +120,9 @@ class Poker < Minitest::Test
         hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
-        assert_equal(["Player2 got a Straight Flush!", "Player1 got a Straight Flush!"], game.player_got)
+        assert_equal(["Player2 got, a Straight Flush!", "Player1 got, a Straight Flush!"], game.player_got)
         # but who won? Lets check the high card!
-        assert_equal(["Jack of Hearts", "Six of Hearts"], game.high_card)
+        assert_equal(["Player2's high card is Jack of Hearts", "Player1's high card is Six of Hearts"], game.high_card)
     end
 
     def test_4_of_a_kind
@@ -141,10 +141,10 @@ class Poker < Minitest::Test
         hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
-        assert_equal("Player1 got Four of a Kind!", game.player_got[-1])
-        assert_equal(["Player2 got Four of a Kind!", "Player1 got Four of a Kind!"], game.player_got)
-        # But who won? Lets check the highest card!
-        assert_equal(["King of Hearts", "Ace of Hearts"], game.high_card)
+        assert_equal("Player1 got, a Four of a Kind!", game.player_got[-1])
+        assert_equal(["Player2 got, a Four of a Kind!", "Player1 got, a Four of a Kind!"], game.player_got)
+        # But who won? Lets check th,e highest card!
+        assert_equal(["Player2's high card is King of Hearts", "Player1's high card is Ace of Hearts"], game.high_card)
         # Aces are high btw, player1 wins :P
     end
 

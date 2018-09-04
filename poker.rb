@@ -202,13 +202,14 @@ class Hand_checker
                 @value << card.card_value
                 @card_list << card
             end
+            @got_string = "Player#{@counter + 1} got, a "
             if straight_flush(@suit, @value)
-                @player_got << "Player#{@counter + 1} got a Straight Flush!"
+                @player_got << "#{@got_string}Straight Flush!"
             elsif four_kind(@value)
-                @player_got << "Player#{@counter + 1} got Four of a Kind!"
+                @player_got << "#{@got_string}Four of a Kind!"
             end
 
-            @high_card << high_card?(@card_list)
+            @high_card << "Player#{@counter + 1}'s high card is #{high_card?(@card_list)}"
             @counter -= 1
         end
     end
