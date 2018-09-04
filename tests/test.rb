@@ -45,12 +45,12 @@ class Poker < Minitest::Test
 
     def test_card_returns_value
         card = Card.new("TC")
-        assert_equal("10", card.card_value)
+        assert_equal(10, card.card_value)
     end
 
-    def test_card_returns_suite
+    def test_card_returns_suit
         card = Card.new("2S")
-        assert_equal("Spades", card.card_suite)
+        assert_equal("Spades", card.card_suit)
     end
 
     def test_hand_is_hand_class
@@ -75,8 +75,8 @@ class Poker < Minitest::Test
         card = Card.new("4H")
         hand.add(card)
         assert_equal("Four of Hearts", hand.cards[0].card_longhand)
-        assert_equal("4", hand.cards[0].card_value)
-        assert_equal("Hearts", hand.cards[0].card_suite)
+        assert_equal(4, hand.cards[0].card_value)
+        assert_equal("Hearts", hand.cards[0].card_suit)
     end
 
     def test_2_players_deck_42_cards
@@ -90,5 +90,19 @@ class Poker < Minitest::Test
         # how many hands are in the list
         assert_equal(2, poker_deck.hand_list.keys.length)
     end
+
+    def test_straight_flush
+        hand = Hand.new
+        hand.add(Card.new("2H"))
+        hand.add(Card.new("3H"))
+        hand.add(Card.new("4H"))
+        hand.add(Card.new("5H"))
+        hand.add(Card.new("6H"))
+        hash = {"player1" => hand}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 got a Straight Flush!", game.player_got)
+    end
+
 
  end
