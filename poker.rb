@@ -138,7 +138,7 @@ end
 
 class Hand_checker
     def initialize() 
-        @player_got = ""       
+        @player_got = []
     end
 
     def straight_flush(suit,value)
@@ -168,11 +168,10 @@ class Hand_checker
                 @value << card.card_value
             end
             if straight_flush(@suit, @value)
-                @player_got += "Player#{@counter + 1} got a Straight Flush!."
+                @player_got << "Player#{@counter + 1} got a Straight Flush!"
             end
             @counter -= 1
         end
-        @player_got = @player_got.split(".")
     end
 
     attr_reader :player_got
