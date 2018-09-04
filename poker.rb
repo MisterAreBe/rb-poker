@@ -130,6 +130,7 @@ class Hand_checker
         @high_card = []
     end
 
+    # Used to see if the cards run
     def array_increments?(array)
         @sorted = array.sort
         @last_num = @sorted[0]
@@ -142,6 +143,7 @@ class Hand_checker
         true
     end
 
+    # Used to find the highest value card in the hand
     def high_card?(card_list)
         @num_list = []
         card_list.each do |v|
@@ -156,6 +158,7 @@ class Hand_checker
         end
     end
 
+    # Used to check if hand is a straight flush
     def straight_flush(suit,value)
         @is_suit = false
         @is_flush = false
@@ -171,6 +174,22 @@ class Hand_checker
         false
     end
 
+    # Used to check if the hand is a four of a kind
+    def four_kind(value)
+        @check_four = 0
+        value.all? do |x| 
+            if x == value[0]
+                @check_four += 1
+            end
+        end
+        if @check_four == 4
+            return true
+        end
+        false
+    end
+
+
+    # Used to check the dealt hands
     def check(hash_hands)
         @counter = hash_hands.length - 1
         while @counter > -1
@@ -185,6 +204,8 @@ class Hand_checker
             end
             if straight_flush(@suit, @value)
                 @player_got << "Player#{@counter + 1} got a Straight Flush!"
+            elsif four_kind(@value)
+                @player_got << "Player#{@counter + 1} got Four of a Kind!"
             end
 
             @high_card << high_card?(@card_list)
