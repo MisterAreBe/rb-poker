@@ -101,7 +101,26 @@ class Poker < Minitest::Test
         hash = {"player1" => hand}
         game = Hand_checker.new
         game.check(hash)
-        assert_equal("Player1 got a Straight Flush!", game.player_got)
+        assert_equal(["Player1 got a Straight Flush!"], game.player_got)
+    end
+
+    def test_2_hands_got
+        hand = Hand.new
+        hand.add(Card.new("2H"))
+        hand.add(Card.new("3H"))
+        hand.add(Card.new("4H"))
+        hand.add(Card.new("5H"))
+        hand.add(Card.new("6H"))
+        hand2 = Hand.new
+        hand2.add(Card.new("7H"))
+        hand2.add(Card.new("8H"))
+        hand2.add(Card.new("9H"))
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("JH"))
+        hash = {"player1" => hand, "player2" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal(["Player2 got a Straight Flush!", "Player1 got a Straight Flush!"], game.player_got)
     end
 
 

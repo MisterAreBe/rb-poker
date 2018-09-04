@@ -7,7 +7,7 @@ class Card
         when "T"
             @card_value = 10
         when "J"
-            @card_suit = 11
+            @card_value = 11
         when "Q"
             @card_value = 12
         when "K"
@@ -168,10 +168,11 @@ class Hand_checker
                 @value << card.card_value
             end
             if straight_flush(@suit, @value)
-                @player_got = "Player#{@counter + 1} got a Straight Flush!"
+                @player_got += "Player#{@counter + 1} got a Straight Flush!."
             end
             @counter -= 1
         end
+        @player_got = @player_got.split(".")
     end
 
     attr_reader :player_got
