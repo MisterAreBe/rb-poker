@@ -83,7 +83,10 @@ class Poker < Minitest::Test
         poker_deck = Deck.new
         poker_deck.shuffle()
         poker_deck.deal(2)
+        # how many cards left in deck
         assert_equal(42, poker_deck.deck.length)
+        # how many cards in one of the hands
+        assert_equal(5, poker_deck.hand_list.values[1].cards.length)
     end
 
  end
