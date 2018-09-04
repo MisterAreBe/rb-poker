@@ -107,9 +107,9 @@ class Deck
     def deal(players)
         @cards_per_hand = 5
         @hand_list = Hash.new
-        @hand = Hand.new
         while players > 0
-            @hand_list["player#{players}"] = [@hand]
+            @hand = Hand.new
+            @hand_list["player#{players}"] = @hand
             players -= 1
         end
         @cards_per_hand.times do
@@ -117,17 +117,6 @@ class Deck
                 value.add(@deck.pop)
             end
         end
-        # @hands = Hash.new
-        # while players > 0
-        #     @hands["player#{players}"] = []
-        #     players -= 1
-        # end
-        # @cards_per_hand.times do
-        #     @hands.each do |key, value|
-        #         value << @deck.pop
-        #         @hands[key] = value
-        #     end
-        # end
     end
 
     attr_accessor :cards_per_hand
