@@ -87,6 +87,8 @@ class Poker < Minitest::Test
         assert_equal(42, poker_deck.deck.length)
         # how many cards in one of the hands
         assert_equal(5, poker_deck.hand_list.values[1].cards.length)
+        # how many hands are in the list
+        assert_equal(2, poker_deck.hand_list.keys.length)
     end
 
  end
