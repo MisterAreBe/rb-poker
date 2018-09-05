@@ -178,10 +178,18 @@ class Poker < Minitest::Test
         hand.add(Card.new("QS"))
         hand.add(Card.new("2S"))
         hand.add(Card.new("4S"))
-        hash = {"player1" => hand}
+        hand2 = Hand.new
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("4H"))
+        hand2.add(Card.new("7H"))
+        hand2.add(Card.new("3H"))
+        hand2.add(Card.new("AH"))
+        hash = {"player1" => hand, "player12" => hand2}
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Flush!", game.player_got[-1])
+        assert_equal(["Player2 got, a Flush!", "Player1 got, a Flush!"], game.player_got)
+
     end
 
  end
