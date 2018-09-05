@@ -248,6 +248,14 @@ class Hand_checker
         false
     end
 
+    # Used to check is the hand is a straight
+    def straight(value)
+        if array_increments?(value)
+            return true
+        end
+        false
+    end
+
     # Used to check the dealt hands
     def check(hash_hands)
         @counter = hash_hands.length - 1
@@ -276,6 +284,8 @@ class Hand_checker
                 @how_to = "#{high_card?(@holder)}"
             elsif flush(@suit)
                 @player_got << "#{@got_string}Flush!"
+            elsif straight(@value)
+                @player_got << "#{@got_string}Straight!"
             end
 
             @high_card << "Player#{@counter + 1}'s high card is #{@how_to}"
