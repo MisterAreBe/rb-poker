@@ -211,6 +211,7 @@ class Poker < Minitest::Test
         game.check(hash)
         assert_equal("Player1 got, a Straight!", game.player_got[-1])
         assert_equal(["Player2 got, a Straight!", "Player1 got, a Straight!"], game.player_got)
-        
+        # So yet again, let's chekc the high card....
+        assert_equal(["Player2's high card is King of Diamonds", "Player1's high card is Ace of Spades"], game.high_card)
     end
  end
