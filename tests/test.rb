@@ -214,4 +214,18 @@ class Poker < Minitest::Test
         # So yet again, let's chekc the high card....
         assert_equal(["Player2's high card is King of Diamonds", "Player1's high card is Ace of Spades"], game.high_card)
     end
+
+    def test_three_of_a_kind
+        hand = Hand.new
+        hand.add(Card.new("3S"))
+        hand.add(Card.new("3C"))
+        hand.add(Card.new("3D"))
+        hand.add(Card.new("JH"))
+        hand.add(Card.new("TC"))
+
+        hash = {"player1" => hand}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 got, a Three of a Kind!", game.player_got[-1])
+    end
  end
