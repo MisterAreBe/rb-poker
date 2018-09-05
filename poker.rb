@@ -248,13 +248,36 @@ class Hand_checker
         false
     end
 
-    # Used to check is the hand is a straight
+    # Used to check if the hand is a straight
     def straight(value)
         if array_increments?(value)
             return true
         end
         false
     end
+
+    # Used to check if the hand is a three of a kind
+    def three_kind(card_list, back)
+        @tres = []
+        @leftover = []
+        @holder = []
+        card_list.each do |v|
+            if v.card_value == card_list[2].card_value
+                @tres << v
+            else
+                @leftover << v
+            end
+        end
+        if @tres.length == 3 && back == 0
+            return true
+        elsif @tres.length == 3 && back == 1
+            @holder << @tres
+            @holder << @leftover
+            return @holder
+        end
+        false
+    end
+
 
     # Used to check the dealt hands
     def check(hash_hands)
@@ -286,6 +309,10 @@ class Hand_checker
                 @player_got << "#{@got_string}Flush!"
             elsif straight(@value)
                 @player_got << "#{@got_string}Straight!"
+            elsif three_kind(@card_list, 0)
+                @player_got << "#{@got_string}Three of a Kind!"
+                @holder = three_kind(@card_list, 1)
+                @how_to = "#{high_card?(@holder)}"
             end
 
             @high_card << "Player#{@counter + 1}'s high card is #{@how_to}"
