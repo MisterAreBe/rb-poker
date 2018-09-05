@@ -146,14 +146,37 @@ class Hand_checker
     # Used to find the highest value card in the hand
     def high_card?(card_list)
         @num_list = []
-        card_list.each do |v|
-            @num_list << v.card_value
-        end
-        @num_list.sort!
-        @highest = @num_list[-1]
-        card_list.each do |v|
-            if v.card_value == @highest
-                return v.card_longhand
+        if card_list.length < 5
+            card_list.each do |v|
+                if v.is_a?(Array)
+                    if v.length == 3
+                        v.each do |x|
+                            @num_list << x.card_value
+                        end
+                    elsif v.length == 2
+                        v.each do |x|
+                            @num_list << x.card_value
+                        end
+                    end
+                    @num_list.sort!
+                    @highest = @num_list[-1]
+                    v.each do |x|
+                        if x.card_value == @highest
+                            return x.card_longhand
+                        end
+                    end
+                end
+            end
+        else
+            card_list.each do |v|
+                @num_list << v.card_value
+            end
+            @num_list.sort!
+            @highest = @num_list[-1]
+            card_list.each do |v|
+                if v.card_value == @highest
+                    return v.card_longhand
+                end
             end
         end
     end
@@ -189,20 +212,29 @@ class Hand_checker
     end
 
     # Used to check if the hand is a full house
-    def full_house(value)
+    def full_house(card_list, back)
         @check_three = 0
         @check_duce = 0
+        @tres = []
         @duce = []
-        value.sort.each do |v|
-            if v == value[2]
+        @holder = []
+        card_list.each do |v|
+            if v.card_value == card_list[2].card_value
                 @check_three += 1
+                @tres << v
             else
                 @duce << v
             end
         end
         if @duce.length == 2
-            if @duce[0] == @duce[1] && @check_three == 3
-                return true
+            if @duce[0].card_value == @duce[1].card_value && @check_three == 3
+                if back == 0
+                    return true
+                else
+                    @holder << @tres
+                    @holder << @duce
+                    return @holder
+                end
             end
         end
         false
@@ -225,16 +257,21 @@ class Hand_checker
             end
 
             @got_string = "Player#{@counter + 1} got, a "
+            @how_to = ""
 
             if straight_flush(@suit, @value)
                 @player_got << "#{@got_string}Straight Flush!"
+                @how_to = "#{high_card?(@card_list)}"
             elsif four_kind(@value)
                 @player_got << "#{@got_string}Four of a Kind!"
-            elsif full_house(@value)
+                @how_to = "#{high_card?(@card_list)}"
+            elsif full_house(@card_list, 0)
                 @player_got << "#{@got_string}Full House!"
+                @holder = full_house(@card_list, 1)
+                @how_to = "#{high_card?(@holder)}"
             end
 
-            @high_card << "Player#{@counter + 1}'s high card is #{high_card?(@card_list)}"
+            @high_card << "Player#{@counter + 1}'s high card is #{@how_to}"
             @counter -= 1
         end
     end
