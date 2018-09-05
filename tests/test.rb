@@ -189,7 +189,8 @@ class Poker < Minitest::Test
         game.check(hash)
         assert_equal("Player1 got, a Flush!", game.player_got[-1])
         assert_equal(["Player2 got, a Flush!", "Player1 got, a Flush!"], game.player_got)
-
+        # But yet again, who won? Lets check the highest card!
+        assert_equal(["Player2's high card is Ace of Hearts", "Player1's high card is Queen of Spades"], game.high_card)
     end
 
  end
