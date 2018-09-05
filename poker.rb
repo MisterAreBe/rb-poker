@@ -240,6 +240,13 @@ class Hand_checker
         false
     end
 
+    # Used to check if the hand is a flush
+    def flush(suit)
+        if suit.all? {|x| x == suit[0]}
+            return true
+        end
+        false
+    end
 
     # Used to check the dealt hands
     def check(hash_hands)
@@ -257,18 +264,18 @@ class Hand_checker
             end
 
             @got_string = "Player#{@counter + 1} got, a "
-            @how_to = ""
+            @how_to = "#{high_card?(@card_list)}"
 
             if straight_flush(@suit, @value)
                 @player_got << "#{@got_string}Straight Flush!"
-                @how_to = "#{high_card?(@card_list)}"
             elsif four_kind(@value)
                 @player_got << "#{@got_string}Four of a Kind!"
-                @how_to = "#{high_card?(@card_list)}"
             elsif full_house(@card_list, 0)
                 @player_got << "#{@got_string}Full House!"
                 @holder = full_house(@card_list, 1)
                 @how_to = "#{high_card?(@holder)}"
+            elsif flush(@suit)
+                @player_got << "#{@got_string}Flush!"
             end
 
             @high_card << "Player#{@counter + 1}'s high card is #{@how_to}"
