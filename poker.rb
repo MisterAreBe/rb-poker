@@ -218,22 +218,6 @@ class Hand_checker
 
     # Used to check if the hand is a four of a kind
     def four_kind(card_list, back)
-        # @holder = []
-        # @sorted = []
-        # card_list.each do |x|
-        #     @holder << x.card_value
-        # end
-        # @holder.each_with_index do |v, i|
-        #     @check_four = 0
-        #     card_list.each do |x|
-        #         if v == x.card_value
-        #             @check_four += 1
-        #         end
-        #     end
-        #     if @check_four == 4
-        #         @sorted << card_list[i]
-        #     end
-        # end
         temp = matcher(card_list, 4)
 
         if temp.is_a?(Array)
@@ -251,14 +235,6 @@ class Hand_checker
 
     # Used to check if the hand is a full house
     def full_house(card_list, back)
-        # @tres = []; @duce = []; @holder = []
-        # card_list.each do |v|
-        #     if v.card_value == card_list[2].card_value
-        #         @tres << v
-        #     else
-        #         @duce << v
-        #     end
-        # end
         tres = matcher(card_list, 3)
         duce = matcher(card_list, 2)
         holder = []; holder << tres; holder << duce
@@ -292,22 +268,20 @@ class Hand_checker
 
     # Used to check if the hand is a three of a kind
     def three_kind(card_list, back)
-        @tres = []; @leftover = []; @holder = []
-        card_list.each do |v|
-            if v.card_value == card_list[2].card_value
-                @tres << v
-            else
-                @leftover << v
-            end
-        end
-        if @tres.length == 3 && back == 0
+        tres = matcher(card_list, 3)
+        holder = []; holder << tres
+        if tres.is_a?(Array) && back == 0
             return true
-        elsif @tres.length == 3 && back == 1
-            @holder << @tres; @holder << @leftover
-            return @holder
+        elsif tres.is_a?(Array) && back == 1
+            return holder
         end
         false
     end
+
+    # Used to check is the hand is two pairs
+    # def two_pairs(card_list, back)
+        
+    # end
 
 
     # Used to check the dealt hands
