@@ -282,5 +282,7 @@ class Poker < Minitest::Test
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Pair!", game.player_got[-1])
+        assert_equal(["Player2 got, a Pair!", "Player1 got, a Pair!"], game.player_got)
+        assert_equal(["Player2's high card is Two of Diamonds", "Player1's high card is Two of Clubs"], game.high_card)
     end
  end
