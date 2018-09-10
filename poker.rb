@@ -149,11 +149,7 @@ class Hand_checker
         if card_list.length < 5
             card_list.each do |v|
                 if v.is_a?(Array)
-                    if v.length == 3
-                        v.each do |x|
-                            @num_list << x.card_value
-                        end
-                    elsif v.length == 2
+                    if v.length >= 2 && v.length <= 4
                         v.each do |x|
                             @num_list << x.card_value
                         end
@@ -198,41 +194,51 @@ class Hand_checker
     end
 
     # Used to check if the hand is a four of a kind
-    def four_kind(value)
-        @check_four = 0
-        value.sort.each do |x|
-            if x == value[2]
-                @check_four += 1
+    def four_kind(card_list, back)
+        @holder = []
+        @sorted = []
+        card_list.each do |x|
+            @holder << x.card_value
+        end
+        @holder.each_with_index do |v, i|
+            @check_four = 0
+            card_list.each do |x|
+                if v == x.card_value
+                    @check_four += 1
+                end
+            end
+            if @check_four == 4
+                @sorted << card_list[i]
             end
         end
-        if @check_four == 4
-            return true
+        if @sorted.length == 4
+            if back == 0
+                return true
+            else
+                temp = []
+                temp << @sorted
+                return temp
+            end
         end
         false
     end
 
     # Used to check if the hand is a full house
     def full_house(card_list, back)
-        @check_three = 0
-        @check_duce = 0
-        @tres = []
-        @duce = []
-        @holder = []
+        @tres = []; @duce = []; @holder = []
         card_list.each do |v|
             if v.card_value == card_list[2].card_value
-                @check_three += 1
                 @tres << v
             else
                 @duce << v
             end
         end
         if @duce.length == 2
-            if @duce[0].card_value == @duce[1].card_value && @check_three == 3
+            if @duce[0].card_value == @duce[1].card_value && @tres.length == 3
                 if back == 0
                     return true
                 else
-                    @holder << @tres
-                    @holder << @duce
+                    @holder << @tres;  @holder << @duce
                     return @holder
                 end
             end
@@ -258,9 +264,7 @@ class Hand_checker
 
     # Used to check if the hand is a three of a kind
     def three_kind(card_list, back)
-        @tres = []
-        @leftover = []
-        @holder = []
+        @tres = []; @leftover = []; @holder = []
         card_list.each do |v|
             if v.card_value == card_list[2].card_value
                 @tres << v
@@ -271,8 +275,7 @@ class Hand_checker
         if @tres.length == 3 && back == 0
             return true
         elsif @tres.length == 3 && back == 1
-            @holder << @tres
-            @holder << @leftover
+            @holder << @tres; @holder << @leftover
             return @holder
         end
         false
@@ -299,8 +302,10 @@ class Hand_checker
 
             if straight_flush(@suit, @value)
                 @player_got << "#{@got_string}Straight Flush!"
-            elsif four_kind(@value)
+            elsif four_kind(@card_list, 0)
                 @player_got << "#{@got_string}Four of a Kind!"
+                @holder = four_kind(@card_list, 1)
+                @how_to = "#{high_card?(@holder)}"
             elsif full_house(@card_list, 0)
                 @player_got << "#{@got_string}Full House!"
                 @holder = full_house(@card_list, 1)
@@ -312,6 +317,10 @@ class Hand_checker
             elsif three_kind(@card_list, 0)
                 @player_got << "#{@got_string}Three of a Kind!"
                 @holder = three_kind(@card_list, 1)
+                @how_to = "#{high_card?(@holder)}"
+            elsif two_pairs(@card_list, 0)
+                @player_got << "#{@got_string}Three of a Kind!"
+                @holder = two_pairs(@card_list, 1)
                 @how_to = "#{high_card?(@holder)}"
             end
 
