@@ -69,6 +69,13 @@ class Card
         end
     end
 
+    def ==(y)
+        if @card == y.card
+            return true
+        end
+        return false 
+    end
+
     attr_reader :card
     attr_reader :card_value
     attr_reader :card_suit
@@ -144,7 +151,7 @@ class Hand_checker
     end
 
     # Used to sort hand objects
-    def matcher(card_list, limit)
+    def matcher(card_list, matched, limit)
         holder = []
         sorted = []
         card_list.each do |v|
@@ -157,13 +164,14 @@ class Hand_checker
                     checker += 1
                 end
             end
-            if checker == limit
+            if checker == matched
                 sorted << card_list[i]
             end
+            if sorted.length == limit
+                return sorted
+            end
         end
-        if sorted.length == limit
-            return sorted
-        end
+        []
     end
 
     # Used to find the highest value card in the hand
@@ -218,7 +226,7 @@ class Hand_checker
 
     # Used to check if the hand is a four of a kind
     def four_kind(card_list, back)
-        temp = matcher(card_list, 4)
+        temp = matcher(card_list, 4, 4)
 
         if temp.is_a?(Array)
             if temp.length == 4
@@ -235,8 +243,8 @@ class Hand_checker
 
     # Used to check if the hand is a full house
     def full_house(card_list, back)
-        tres = matcher(card_list, 3)
-        duce = matcher(card_list, 2)
+        tres = matcher(card_list, 3, 3)
+        duce = matcher(card_list, 2, 2)
         holder = []; holder << tres; holder << duce
         if tres.is_a?(Array) && duce.is_a?(Array)
             if holder[0].length == 3 && holder[1].length == 2
@@ -268,20 +276,35 @@ class Hand_checker
 
     # Used to check if the hand is a three of a kind
     def three_kind(card_list, back)
-        tres = matcher(card_list, 3)
+        tres = matcher(card_list, 3, 3)
         holder = []; holder << tres
         if tres.is_a?(Array) && back == 0
-            return true
+            if tres.length == 3; return true; end
         elsif tres.is_a?(Array) && back == 1
-            return holder
+            if tres.length == 3; return holder; end
         end
         false
     end
 
     # Used to check is the hand is two pairs
-    # def two_pairs(card_list, back)
-        
-    # end
+    def two_pairs(card_list, back)
+        temp = []
+        pair1 = matcher(card_list, 2, 2)
+        temp << card_list.select {|x| x.card_value != pair1[0].card_value}
+        temp.flatten!
+        pair2 = matcher(temp, 2, 2)
+        holder = []; holder << pair1; holder << pair2
+        if pair1.is_a?(Array) && pair2.is_a?(Array)
+            if pair1.length == 2 && pair2.length == 2
+                if back == 0
+                    return true
+                elsif back == 1
+                    return holder
+                end
+            end
+        end
+        false
+    end
 
 
     # Used to check the dealt hands
@@ -321,7 +344,7 @@ class Hand_checker
                 @holder = three_kind(@card_list, 1)
                 @how_to = "#{high_card?(@holder)}"
             elsif two_pairs(@card_list, 0)
-                @player_got << "#{@got_string}Three of a Kind!"
+                @player_got << "#{@got_string}Two Pairs!"
                 @holder = two_pairs(@card_list, 1)
                 @how_to = "#{high_card?(@holder)}"
             end
