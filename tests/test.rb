@@ -265,4 +265,22 @@ class Poker < Minitest::Test
         assert_equal(["Player2's high card is Eight of Clubs", "Player1's high card is Five of Diamonds"], game.high_card)
     end
 
+    def test_single_pair
+        hand = Hand.new
+        hand.add(Card.new("7H"))
+        hand.add(Card.new("2C"))
+        hand.add(Card.new("5D"))
+        hand.add(Card.new("2H"))
+        hand.add(Card.new("TC"))
+        hand2 = Hand.new
+        hand2.add(Card.new("2D"))
+        hand2.add(Card.new("AH"))
+        hand2.add(Card.new("9C"))
+        hand2.add(Card.new("8H"))
+        hand2.add(Card.new("2S"))
+        hash = {"player1" => hand, "player2" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 got, a Pair!", game.player_got[-1])
+    end
  end
