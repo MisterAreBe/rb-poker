@@ -150,17 +150,17 @@ class Poker < Minitest::Test
 
     def test_full_house
         hand = Hand.new
-        hand.add(Card.new("KH"))
-        hand.add(Card.new("JC"))
         hand.add(Card.new("JS"))
+        hand.add(Card.new("JC"))
+        hand.add(Card.new("KH"))
         hand.add(Card.new("JD"))
         hand.add(Card.new("KD"))
         hand2 = Hand.new
-        hand2.add(Card.new("TH"))
-        hand2.add(Card.new("TC"))
-        hand2.add(Card.new("TS"))
-        hand2.add(Card.new("3D"))
         hand2.add(Card.new("3S"))
+        hand2.add(Card.new("TC"))
+        hand2.add(Card.new("3D"))
+        hand2.add(Card.new("TS"))
+        hand2.add(Card.new("TH"))
         hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
