@@ -143,6 +143,29 @@ class Hand_checker
         true
     end
 
+    # Used to sort hand objects
+    def matcher(card_list, limit)
+        holder = []
+        sorted = []
+        card_list.each do |v|
+            holder << v.card_value
+        end
+        holder.each_with_index do |v, i|
+            checker = 0
+            card_list.each do |x|
+                if v == x.card_value
+                    checker += 1
+                end
+            end
+            if checker == limit
+                sorted << card_list[i]
+            end
+        end
+        if sorted.length == limit
+            return sorted
+        end
+    end
+
     # Used to find the highest value card in the hand
     def high_card?(card_list)
         @num_list = []
@@ -195,29 +218,32 @@ class Hand_checker
 
     # Used to check if the hand is a four of a kind
     def four_kind(card_list, back)
-        @holder = []
-        @sorted = []
-        card_list.each do |x|
-            @holder << x.card_value
-        end
-        @holder.each_with_index do |v, i|
-            @check_four = 0
-            card_list.each do |x|
-                if v == x.card_value
-                    @check_four += 1
+        # @holder = []
+        # @sorted = []
+        # card_list.each do |x|
+        #     @holder << x.card_value
+        # end
+        # @holder.each_with_index do |v, i|
+        #     @check_four = 0
+        #     card_list.each do |x|
+        #         if v == x.card_value
+        #             @check_four += 1
+        #         end
+        #     end
+        #     if @check_four == 4
+        #         @sorted << card_list[i]
+        #     end
+        # end
+        temp = matcher(card_list, 4)
+
+        if temp.is_a?(Array)
+            if temp.length == 4
+                if back == 0
+                    return true
+                else
+                    holder = []; holder << temp
+                    return holder
                 end
-            end
-            if @check_four == 4
-                @sorted << card_list[i]
-            end
-        end
-        if @sorted.length == 4
-            if back == 0
-                return true
-            else
-                temp = []
-                temp << @sorted
-                return temp
             end
         end
         false
@@ -225,21 +251,23 @@ class Hand_checker
 
     # Used to check if the hand is a full house
     def full_house(card_list, back)
-        @tres = []; @duce = []; @holder = []
-        card_list.each do |v|
-            if v.card_value == card_list[2].card_value
-                @tres << v
-            else
-                @duce << v
-            end
-        end
-        if @duce.length == 2
-            if @duce[0].card_value == @duce[1].card_value && @tres.length == 3
+        # @tres = []; @duce = []; @holder = []
+        # card_list.each do |v|
+        #     if v.card_value == card_list[2].card_value
+        #         @tres << v
+        #     else
+        #         @duce << v
+        #     end
+        # end
+        tres = matcher(card_list, 3)
+        duce = matcher(card_list, 2)
+        holder = []; holder << tres; holder << duce
+        if tres.is_a?(Array) && duce.is_a?(Array)
+            if holder[0].length == 3 && holder[1].length == 2
                 if back == 0
                     return true
                 else
-                    @holder << @tres;  @holder << @duce
-                    return @holder
+                    return holder
                 end
             end
         end

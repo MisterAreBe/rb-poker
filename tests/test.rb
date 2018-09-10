@@ -168,7 +168,7 @@ class Poker < Minitest::Test
         # This is where it's gonna get tricky
         assert_equal(["Player2 got, a Full House!", "Player1 got, a Full House!"], game.player_got)
         # But yet again, who won? Lets check the highest card!
-        assert_equal(["Player2's high card is Ten of Hearts", "Player1's high card is Jack of Clubs"], game.high_card)
+        assert_equal(["Player2's high card is Ten of Clubs", "Player1's high card is Jack of Spades"], game.high_card)
     end
 
     def test_flush
