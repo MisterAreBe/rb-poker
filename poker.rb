@@ -292,7 +292,7 @@ class Hand_checker
         false
     end
 
-    # Used to check is the hand is two pairs
+    # Used to check if the hand is two pairs
     def two_pairs(card_list, back)
         temp = []
         pair1 = matcher(card_list, 2, 2)
@@ -312,6 +312,19 @@ class Hand_checker
         false
     end
 
+    # Used to check if the hand is a pair
+    def pair(card_list, back)
+        temp = matcher(card_list, 2, 2)
+        if temp.is_a?(Array)
+            if temp.length == 2 && back == 0
+                return true
+            elsif temp.length == 2 && back == 1
+                holder = []; holder << temp
+                return holder
+            end
+        end
+        false
+    end
 
     # Used to check the dealt hands
     def check(hash_hands)
@@ -353,6 +366,12 @@ class Hand_checker
                 @player_got << "#{@got_string}Two Pairs!"
                 @holder = two_pairs(@card_list, 1)
                 @how_to = "#{high_card?(@holder)}"
+            elsif pair(@card_list, 0)
+                @player_got << "#{@got_string}Pair!"
+                @holder = pair(@card_list, 1)
+                @how_to = "#{high_card?(@holder)}"
+            else
+                @player_got << "#{@got_string}Crap Hand!"
             end
 
             @high_card << "Player#{@counter + 1}'s high card is #{@how_to}"
