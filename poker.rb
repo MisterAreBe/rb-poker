@@ -180,9 +180,15 @@ class Hand_checker
         if card_list.length < 5
             card_list.each do |v|
                 if v.is_a?(Array)
-                    if v.length >= 2 && v.length <= 4
+                    if v.length == 3 || v.length == 4
                         v.each do |x|
                             @num_list << x.card_value
+                        end
+                    elsif v.length == 2
+                        card_list.each do |x|
+                            x.each do |z|
+                                @num_list << z.card_value
+                            end
                         end
                     end
                     @num_list.sort!
