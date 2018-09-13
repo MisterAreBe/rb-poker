@@ -184,7 +184,7 @@ class Poker < Minitest::Test
         hand2.add(Card.new("7H"))
         hand2.add(Card.new("3H"))
         hand2.add(Card.new("AH"))
-        hash = {"player1" => hand, "player12" => hand2}
+        hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Flush!", game.player_got[-1])
@@ -206,7 +206,7 @@ class Poker < Minitest::Test
         hand2.add(Card.new("JC"))
         hand2.add(Card.new("TH"))
         hand2.add(Card.new("9S"))
-        hash = {"player1" => hand, "player12" => hand2}
+        hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Straight!", game.player_got[-1])
@@ -228,7 +228,7 @@ class Poker < Minitest::Test
         hand2.add(Card.new("2C"))
         hand2.add(Card.new("TH"))
         hand2.add(Card.new("9S"))
-        hash = {"player1" => hand, "player12" => hand2}
+        hash = {"player1" => hand, "player2" => hand2}
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 got, a Three of a Kind!", game.player_got[-1])
@@ -352,6 +352,25 @@ class Poker < Minitest::Test
         game = Hand_checker.new
         game.check(hash)
         assert_equal("Player1 Won!", game.winner)
+    end
+
+    def test_flush_winner
+        hand = Hand.new
+        hand.add(Card.new("8S"))
+        hand.add(Card.new("JS"))
+        hand.add(Card.new("QS"))
+        hand.add(Card.new("2S"))
+        hand.add(Card.new("4S"))
+        hand2 = Hand.new
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("4H"))
+        hand2.add(Card.new("7H"))
+        hand2.add(Card.new("3H"))
+        hand2.add(Card.new("AH"))
+        hash = {"player1" => hand, "player2" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player2 Won!", game.winner)
     end
 
 
