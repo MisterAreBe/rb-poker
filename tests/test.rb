@@ -316,6 +316,25 @@ class Poker < Minitest::Test
         assert_equal("Player2 Won!", game.winner)
     end
 
+    def test_three_of_a_kind_winner
+        hand = Hand.new
+        hand.add(Card.new("3S"))
+        hand.add(Card.new("3C"))
+        hand.add(Card.new("3D"))
+        hand.add(Card.new("JH"))
+        hand.add(Card.new("TC"))
+        hand2 = Hand.new
+        hand2.add(Card.new("2D"))
+        hand2.add(Card.new("2H"))
+        hand2.add(Card.new("2C"))
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("9S"))
+        hash = {"player1" => hand, "player12" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 Won!", game.winner)
+    end
+
     # def test_who_won_random
     #     game = Hand_checker.new
     #     game.check(game.hands)

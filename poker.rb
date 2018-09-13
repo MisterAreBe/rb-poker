@@ -605,11 +605,9 @@ class Hand_checker
                 @how_to = "#{high_card?(@holder, 0)}"
                 if player2_high == 0
                     player2_high = high_card?(@holder, 1)
-                    puts "This is player 2 high card #{player2_high}"
                     player2_hand = @holder
                 else
                     player1_high = high_card?(@holder, 1)
-                    puts "This is player 1 high card #{player1_high}"
                     player1_hand = @holder
                 end
             elsif pair(@card_list, 0)
