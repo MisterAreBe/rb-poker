@@ -335,7 +335,7 @@ class Poker < Minitest::Test
         assert_equal("Player1 Won!", game.winner)
     end
 
-    def test_straight
+    def test_straight_winner
         hand = Hand.new
         hand.add(Card.new("AS"))
         hand.add(Card.new("KC"))
@@ -354,7 +354,7 @@ class Poker < Minitest::Test
         assert_equal("Player1 Won!", game.winner)
     end
 
-    
+
     # def test_who_won_random
     #     game = Hand_checker.new
     #     game.check(game.hands)
