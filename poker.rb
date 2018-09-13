@@ -343,11 +343,8 @@ class Hand_checker
     def two_pairs(card_list, back)
         temp = []
         pair1 = matcher(card_list, 2, 2)
-        pair1.each do |v|
-            puts "This is pair1 little #{v.card_value}"
-        end
-        card_list.each do |v|
-            puts "This is card_list big ol #{v.card_value}"
+        unless pair1.length == 2
+            return false
         end
         temp << card_list.select {|x| x.card_value != pair1[0].card_value}
         temp.flatten!
