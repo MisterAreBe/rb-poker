@@ -335,6 +335,26 @@ class Poker < Minitest::Test
         assert_equal("Player1 Won!", game.winner)
     end
 
+    def test_straight
+        hand = Hand.new
+        hand.add(Card.new("AS"))
+        hand.add(Card.new("KC"))
+        hand.add(Card.new("QD"))
+        hand.add(Card.new("JH"))
+        hand.add(Card.new("TC"))
+        hand2 = Hand.new
+        hand2.add(Card.new("KD"))
+        hand2.add(Card.new("QH"))
+        hand2.add(Card.new("JC"))
+        hand2.add(Card.new("TH"))
+        hand2.add(Card.new("9S"))
+        hash = {"player1" => hand, "player12" => hand2}
+        game = Hand_checker.new
+        game.check(hash)
+        assert_equal("Player1 Won!", game.winner)
+    end
+
+    
     # def test_who_won_random
     #     game = Hand_checker.new
     #     game.check(game.hands)
