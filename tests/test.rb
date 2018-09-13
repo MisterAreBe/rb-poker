@@ -430,12 +430,12 @@ class Poker < Minitest::Test
         assert_equal("Player2 Won!", game.winner)
     end
 
-    # def test_who_won_random
-    #     game = Hand_checker.new
-    #     game.check(game.hands)
-    #     assert_equal(12, game.winner.length)
-    #     assert_equal("", game.player_got)
-    #     assert_equal("", game.high_card)
-    # end
+    def test_who_won_random
+        game = Hand_checker.new
+        1000.times do
+        game.check(game.hands)
+        assert_equal(12, game.winner.length)
+        end
+    end
 
  end
