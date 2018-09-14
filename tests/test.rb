@@ -432,9 +432,13 @@ class Poker < Minitest::Test
 
     def test_who_won_random
         game = Hand_checker.new
-        1000.times do
+        1.times do
         game.check(game.hands)
         assert_equal(12, game.winner.length)
+        puts game.winner
+        puts game.player_got
+        puts game.high_card
+        puts game.hands
         end
     end
 

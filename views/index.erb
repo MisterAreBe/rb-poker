@@ -1,0 +1,48 @@
+<div class="big_box">
+<div class="player1">
+        Player 1
+    <div class="card_field">
+        <% if player1_cards.length == 5%>
+            <% player1_cards.each do |v| %>
+                <img class="cards" src="images/<%= v %>.png">
+            <% end %>
+        <% else %>
+            <% 5.times do %>
+                <img class="cards" src="images/blank_card.png">
+            <% end %>
+        <% end %>
+    </div>
+    <div class="player1_info">
+            <%= hand[1] %><br>
+            <%= high_card[1] %>
+    </div>
+ </div>
+<div class="deck">
+    Click the Deck<br>
+    Below to Deal<br>
+    <form method="post" action="/load">
+        <input type="image" class="deal" src="images/deck.jpeg" border="0" alt="Submit">
+    </form>
+    <div class="winner">
+        <%= winner %>
+    </div>
+</div>
+<div class="player2">
+        Player 2
+    <div class="card_field">
+        <% if player2_cards.length == 5%>
+            <% player2_cards.each do |v| %>
+                <img class="cards" src="images/<%= v %>.png">
+            <% end %>
+        <% else %>
+            <% 5.times do %>
+                <img class="cards" src="images/blank_card.png">
+            <% end %>
+        <% end %>
+    </div>
+    <div class="player2_info">
+        <%= hand[0] %><br>
+        <%= high_card[0] %>
+    </div>
+</div>
+</div>

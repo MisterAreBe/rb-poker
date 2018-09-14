@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+.big_box {
+    background-color: #080077;
+    height: 100%;
+    position: relative;
+    padding: 10% 1% 0% 3%;
+}
+.player1,  /* Boxes holding everything player related */
+.player2 {
+    background-color: #0800778a;
+    float: left;
+    width: 40%;
+    height: 56.5%;
+    text-align: center;
+    padding-top: 3%;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: 5px solid #ffffff;
+}
+.deck {  /* Box that holds the deck */
+    float: left;
+    width: 18%;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+.deal {
+    width: 75%;
+}
+.player1_info,  /* Boxes holding info such as hand and high card */
+.player2_info {
+    text-align: center;
+    margin-top: 5%;
+    font-size: 1.1rem;
+}
+.card_field {
+    width: 90%;
+    margin-left: 5%;
+
+}
+.cards { /* Card images */
+    display: inline-block;
+    width: 18%;
+    margin: 0px 1px;
+}
