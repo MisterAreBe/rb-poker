@@ -12,5 +12,9 @@ class Deck < Minitest::Test
         assert_equal(Poker_deck, temp.class)
     end
 
-    
+    def test_deck_is_array
+        temp = Poker_deck.new()
+        assert_equal(Array, temp.deck.class)
+    end
+
 end
