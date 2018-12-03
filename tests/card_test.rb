@@ -8,8 +8,8 @@ class Card < Minitest::Test
     end
 
     def test_card_class
-        temp = Card.new()
-        assert_equal(Card, temp.class)
+        temp = Cards.new([])
+        assert_equal(Cards, temp.class)
     end
 
  end
