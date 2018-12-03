@@ -19,5 +19,9 @@ class Card < Minitest::Test
         assert_equal(10, temp2.card_value)
     end
 
+    def test_card_suit
+        temp = Cards.new(['9', 'H'])
+        assert_equal('Hearts', temp.card_suit)
+    end
 
  end
