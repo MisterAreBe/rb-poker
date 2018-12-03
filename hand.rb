@@ -12,10 +12,8 @@ class Hands
         end
     end
 
-    def take_cards(card)
-        @players.each_value do |hand|
-            hand << card
-        end
+    def take_cards(player, card)
+        @players[player] << card
     end
 
 

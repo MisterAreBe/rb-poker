@@ -13,5 +13,7 @@ class Poker_deck
     end
 
     
+    
+    attr_reader :hands
     attr_reader :deck
 end

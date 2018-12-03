@@ -35,7 +35,11 @@ class Deck < Minitest::Test
         refute_equal(temp.deck[51].card_name, temp2.deck[51].card_name)
     end
 
-
+    def test_deal_cards_to_players
+        temp = Poker_deck.new()
+        temp.deal_out_cards()
+        assert_equal(5, temp.hands.players["Player 1"].length)
+    end
 
 
 
