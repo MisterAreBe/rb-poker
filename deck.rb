@@ -9,6 +9,7 @@ class Poker_deck
                 @deck << Cards.new(["#{value}", "#{suite}"])
             end
         end
+        @deck.shuffle!
     end
 
     
