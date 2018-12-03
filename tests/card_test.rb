@@ -28,5 +28,4 @@ class Card < Minitest::Test
         temp = Cards.new(['A', 'C'])
         assert_equal("Ace of Clubs", temp.card_name)
     end
-
  end
