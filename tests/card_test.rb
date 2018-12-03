@@ -7,9 +7,14 @@ class Card < Minitest::Test
         assert_equal(1, 1)
     end
 
-    def test_card_class
-        temp = Cards.new([])
+    def test_cards_class
+        temp = Cards.new(['', ''])
         assert_equal(Cards, temp.class)
+    end
+
+    def test_card_value
+        temp = Cards.new(['5', 'D'])
+        assert_equal(5, temp.card_value)
     end
 
  end
