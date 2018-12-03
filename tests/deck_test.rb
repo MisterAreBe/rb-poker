@@ -22,5 +22,5 @@ class Deck < Minitest::Test
         assert_equal(52, temp.deck.length)
     end
 
-    
+
 end
