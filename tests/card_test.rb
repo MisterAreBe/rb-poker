@@ -7,6 +7,9 @@ class Card < Minitest::Test
         assert_equal(1, 1)
     end
 
-    
+    def test_card_class
+        temp = Card.new()
+        assert_equal(Card, temp.class)
+    end
 
  end
