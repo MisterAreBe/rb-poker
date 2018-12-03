@@ -12,5 +12,9 @@ class Hand < Minitest::Test
         assert_equal(Hands, temp.class)
     end
 
+    def test_hands_has_hash
+        temp = Hands.new()
+        assert_equal(Hash, temp.players.class)
+    end
     
 end
