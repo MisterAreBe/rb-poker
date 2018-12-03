@@ -27,6 +27,11 @@ class Deck < Minitest::Test
         assert_equal(Cards, temp.deck[43].class)
     end
 
+    def test_deck_is_shuffled
+        temp = Poker_deck.new()
+        temp2 = Poker_deck.new()
+        refute_equal(temp.deck[26].card_name, temp2.deck[26].card_name)
+    end
 
 
 
