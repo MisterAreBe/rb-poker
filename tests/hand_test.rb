@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative "../hand.rb"
+require_relative "../poker.rb"
 
 class Hand < Minitest::Test
 
@@ -19,8 +19,14 @@ class Hand < Minitest::Test
 
     def test_hands_can_take_players
         temp = Hands.new()
-        temp.deal_in(2)
+        temp.deal_in()
         assert_equal(["Player 1", "Player 2"], temp.players.keys)
     end
 
+    def test_deal_player1_hand
+        temp = Hands.new()
+        temp.deal_in()
+        temp.take_cards(Cards.new(["8", "S"]))
+        assert_equal("8 of Spades", temp.players["Player 1"].card_name)
+    end
 end
