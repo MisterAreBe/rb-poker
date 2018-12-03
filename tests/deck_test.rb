@@ -31,6 +31,8 @@ class Deck < Minitest::Test
         temp = Poker_deck.new()
         temp2 = Poker_deck.new()
         refute_equal(temp.deck[26].card_name, temp2.deck[26].card_name)
+        refute_equal(temp.deck[1].card_name, temp2.deck[1].card_name)
+        refute_equal(temp.deck[51].card_name, temp2.deck[51].card_name)
     end
 
 
