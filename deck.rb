@@ -12,7 +12,17 @@ class Poker_deck
         @deck.shuffle!
     end
 
-    
+    def deal_out_cards(num_of_players=2)
+        @hands = Hands.new()
+        @hands.deal_in(num_of_players)
+        counter = 1
+        @hands.players.length.times do
+            5.times do
+                @hands.take_cards("Player #{counter}", @deck.pop)
+            end
+            counter += 1
+        end
+    end
     
     attr_reader :hands
     attr_reader :deck
