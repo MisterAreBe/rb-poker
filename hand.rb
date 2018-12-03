@@ -12,6 +12,11 @@ class Hands
         end
     end
 
+    def take_cards(card)
+        @players.each_value do |hand|
+            hand << card
+        end
+    end
 
 
     attr_reader :players

@@ -27,6 +27,6 @@ class Hand < Minitest::Test
         temp = Hands.new()
         temp.deal_in()
         temp.take_cards(Cards.new(["8", "S"]))
-        assert_equal("8 of Spades", temp.players["Player 1"].card_name)
+        assert_equal("8 of Spades", temp.players["Player 1"][0].card_name)
     end
 end
