@@ -20,7 +20,7 @@ class Hand < Minitest::Test
     def test_hands_can_take_players
         temp = Hands.new()
         temp.deal_in(2)
-        assert_equal('', temp.players.keys)
+        assert_equal(["Player 1", "Player 2"], temp.players.keys)
     end
 
 end
