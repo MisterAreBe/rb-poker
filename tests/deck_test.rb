@@ -17,4 +17,10 @@ class Deck < Minitest::Test
         assert_equal(Array, temp.deck.class)
     end
 
+    def test_deck_length_52
+        temp = Poker_deck.new()
+        assert_equal(52, temp.deck.length)
+    end
+
+    
 end
