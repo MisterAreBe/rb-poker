@@ -23,6 +23,15 @@ class PokerRules < Minitest::Test
         assert_equal(5, temp.players["Player 2"][:hand].length)
     end
 
-
+    def test_hardcoded_hand_to_test
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"]))
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"]))
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"]))
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"]))
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"]))
+        assert_equal("2 of Spades", temp.players["Player 1"][:hand][0].card_name)
+    end
 
 end
