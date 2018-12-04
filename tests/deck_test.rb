@@ -38,8 +38,8 @@ class Deck < Minitest::Test
     def test_deal_cards_to_players
         temp = Poker_deck.new()
         temp.deal_out_cards()
-        assert_equal(5, temp.hands.players["Player 1"].length)
-        assert_equal(5, temp.hands.players["Player 2"].length)
+        assert_equal(5, temp.hands.players["Player 1"][:hand].length)
+        assert_equal(5, temp.hands.players["Player 2"][:hand].length)
     end
 
 
