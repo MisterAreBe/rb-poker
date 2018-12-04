@@ -16,5 +16,13 @@ class PokerRules < Minitest::Test
         temp = Game.new()
         assert_equal(Poker_deck, temp.deck.class)
     end
+    
+    def test_that_game_dealt_hands
+        temp = Game.new()
+        assert_equal(5, temp.players["Player 1"][:hand].length)
+        assert_equal(5, temp.players["Player 2"][:hand].length)
+    end
+
+
 
 end
