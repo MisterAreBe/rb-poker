@@ -14,7 +14,7 @@ class PokerRules < Minitest::Test
 
     def test_that_game_made_deck
         temp = Game.new()
-        assert_equal(Deck, temp.deck.class)
+        assert_equal(Poker_deck, temp.deck.class)
     end
-    
+
 end
