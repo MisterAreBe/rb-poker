@@ -7,13 +7,13 @@ class Hands
     def deal_in(num_of_players=2)
         counter = 1
         while counter <= num_of_players
-            @players["Player #{counter}"] = []
+            @players["Player #{counter}"] = {:hand => [], :type => "", :high_card => ""}
             counter += 1
         end
     end
 
     def take_cards(player, card)
-        @players[player] << card
+        @players[player][:hand] << card
     end
 
 
