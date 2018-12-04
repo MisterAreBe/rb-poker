@@ -27,6 +27,13 @@ class Hand < Minitest::Test
         temp = Hands.new()
         temp.deal_in()
         temp.take_cards("Player 1", Cards.new(["8", "S"]))
-        assert_equal("8 of Spades", temp.players["Player 1"][0].card_name)
+        assert_equal("8 of Spades", temp.players["Player 1"][:hand][0].card_name)
     end
+
+    def test_refactored_hash_hand
+        temp = Hands.new()
+        temp.deal_in()
+        assert_equal({"Player 1" => {:hand => [], :type => "", :high_card => ""}, "Player 2" => {:hand => [], :type => "", :high_card => ""}}, temp.players)
+    end
+
 end
