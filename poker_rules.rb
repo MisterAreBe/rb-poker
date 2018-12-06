@@ -32,8 +32,10 @@ class Game
     end
 
     def three_match()
-        copy_locator(3) ? 2 : 0
+        copy_locator(3) ? 3 : 0
     end
+
+
 
 
     def find_hand_type()

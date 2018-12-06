@@ -81,8 +81,29 @@ class PokerRules < Minitest::Test
         assert_equal(2, temp.three_match())
     end
 
+    def test_finding_3_of_a_kind
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "Q"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        assert_equal(3, temp.three_match())
+    end
 
-
+    def test_finding_two_pair
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "Q"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        assert_equal(2, temp.two_pair())
+    end
 
 
 
