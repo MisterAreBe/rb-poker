@@ -42,7 +42,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        assert_equal('', temp.break_down(temp.players["Player 1"][:hand]))
+        assert_equal([[2, 3, 4, 5, 6], ["Spades", "Spades", "Spades", "Spades", "Spades"]], temp.break_down(temp.players["Player 1"][:hand]))
     end
 
     # def test_finding_copies

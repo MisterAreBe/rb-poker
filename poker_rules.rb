@@ -6,6 +6,15 @@ class Game
         @players = @deck.hands.players #to easly call on the hands
     end
     
+    def break_down(players_hand)
+        @value_array = []
+        @suit_array = []
+        players_hand.each do |v|
+            @value_array << v.card_value
+            @suit_array << v.card_suit
+        end
+        [@value_array, @suit_array]
+    end
 
     def copy_locator(copies=1)
 
