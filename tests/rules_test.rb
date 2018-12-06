@@ -84,4 +84,22 @@ class PokerRules < Minitest::Test
 
 
 
+
+
+
+
+
+    def test_finding_single_pair_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players["Player 1"][:hand])
+        temp.single_pair()
+        assert_equal("Single Pair", temp.players["Player 1"][:type])
+    end
+
 end
