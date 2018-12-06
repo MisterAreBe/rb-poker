@@ -42,7 +42,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        assert_equal([[2, 3, 4, 5, 6], ["Spades", "Spades", "Spades", "Spades", "Spades"]], temp.break_down(temp.players["Player 1"][:hand]))
+        assert_equal([[2, 3, 4, 5, 6], ["Spades", "Spades", "Spades", "Spades", "Spades"]], temp.break_down(temp.players.keys[0]))
     end
 
     def test_finding_copies
@@ -53,7 +53,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        temp.break_down(temp.players["Player 1"][:hand])
+        temp.break_down(temp.players.keys[0])
         assert_equal(true, temp.copy_locator(2))
     end
 
@@ -65,7 +65,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        temp.break_down(temp.players["Player 1"][:hand])
+        temp.break_down(temp.players.keys[0])
         assert_equal(1, temp.single_pair())
     end
 
@@ -77,12 +77,9 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        temp.break_down(temp.players["Player 1"][:hand])
+        temp.break_down(temp.players.keys[0])
         assert_equal(2, temp.three_match())
     end
-
-
-
 
 
 
@@ -97,8 +94,8 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-        temp.break_down(temp.players["Player 1"][:hand])
-        temp.single_pair()
+        temp.break_down(temp.players.keys[0])
+        temp.single_pair(); temp.find_hand_type()
         assert_equal("Single Pair", temp.players["Player 1"][:type])
     end
 
