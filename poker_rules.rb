@@ -29,6 +29,10 @@ class Game
         copy_locator(2) ? 1 : 0
     end
 
+    def three_match()
+        copy_locator(3) ? 2 : 0
+    end
+
     attr_reader :players
     attr_reader :deck
 end
