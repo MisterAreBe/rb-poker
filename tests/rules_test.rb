@@ -45,15 +45,16 @@ class PokerRules < Minitest::Test
         assert_equal([[2, 3, 4, 5, 6], ["Spades", "Spades", "Spades", "Spades", "Spades"]], temp.break_down(temp.players["Player 1"][:hand]))
     end
 
-    # def test_finding_copies
-    # temp = Game.new()
-    # temp.deck.hands.deal_in() # resets the players to blank
-    # temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
-    # temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
-    # temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
-    # temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
-    # temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
-    # assert_equal(true, temp.copy_locator(2))
-    # end
+    def test_finding_copies
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players["Player 1"][:hand])
+        assert_equal(true, temp.copy_locator(2))
+    end
 
 end

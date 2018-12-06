@@ -17,7 +17,12 @@ class Game
     end
 
     def copy_locator(copies=1)
-
+        @value_array.each do |v|
+            if @value_array.count(v) == copies
+                return true
+            end
+        end
+        false
     end
 
     attr_reader :players
