@@ -25,6 +25,10 @@ class Game
         false
     end
 
+    def single_pair()
+        copy_locator(2) ? 1 : 0
+    end
+
     attr_reader :players
     attr_reader :deck
 end
