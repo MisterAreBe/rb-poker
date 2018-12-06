@@ -6,6 +6,11 @@ class Game
         @players = @deck.hands.players #to easly call on the hands
     end
     
+
+    def copy_locator(copies=1)
+
+    end
+
     attr_reader :players
     attr_reader :deck
 end
