@@ -153,7 +153,6 @@ class PokerRules < Minitest::Test
         assert_equal(8, temp.straight_flush())
     end
 
-
     def test_finding_single_pair_type
         temp = Game.new()
         temp.deck.hands.deal_in() # resets the players to blank
@@ -166,5 +165,84 @@ class PokerRules < Minitest::Test
         temp.single_pair(); temp.find_hand_type()
         assert_equal("Single Pair", temp.players["Player 1"][:type])
     end
+
+    def test_finding_three_of_kind_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "H"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.three_match(); temp.find_hand_type()
+        assert_equal("Three of a Kind", temp.players["Player 1"][:type])
+    end
+
+    def test_finding_straight_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["8", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["9", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["7", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.straight(); temp.find_hand_type()
+        assert_equal("Straight", temp.players["Player 1"][:type])
+    end
+
+    def test_finding_flush_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.flush(); temp.find_hand_type()
+        assert_equal("Flush", temp.players["Player 1"][:type])
+    end
+
+    def test_finding_full_house_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "C"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "H"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.full_house(); temp.find_hand_type()
+        assert_equal("Full House", temp.players["Player 1"][:type])
+    end
+
+    def test_finding_four_of_a_kind_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "C"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "H"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.four_match(); temp.find_hand_type()
+        assert_equal("Four of a Kind", temp.players["Player 1"][:type])
+    end
+
+    def test_finding_striaght_flush_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.straight_flush(); temp.find_hand_type()
+        assert_equal("Straight Flush", temp.players["Player 1"][:type])
+    end
+
 
 end

@@ -68,7 +68,7 @@ class Game
     end
 
     def find_hand_type()
-        array_of_hand_methods = [single_pair(), two_pair(), three_match(), straight(), flush()]
+        array_of_hand_methods = [straight_flush(), four_match(), full_house(), flush(), straight(), three_match(), two_pair(), single_pair()]
         score = 0
         array_of_hand_methods.each do |v|
             score = v
@@ -76,7 +76,7 @@ class Game
                 break
             end
         end
-        array_of_hand_types = ["Crap Hand", "Single Pair", "Three of a Kind", "Straight", "Flush"]
+        array_of_hand_types = ["Crap Hand", "Single Pair", "Two Pairs", "Three of a Kind", "Straight", "Flush", "Full House", "Four of a Kind", "Straight Flush"]
         @players[@player][:type] = array_of_hand_types[score]
     end
 
