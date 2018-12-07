@@ -31,6 +31,18 @@ class Game
         copy_locator(2) ? 1 : 0
     end
 
+    def two_pair()
+        first_pair = []
+        @value_array.each do |v|
+            @value_array.count(v) == 2 ? first_pair << v : 0
+        end
+        hand_without_first_pair = @value_array.select {|v| first_pair[0] != v}
+        hand_without_first_pair.each do |v|
+            hand_without_first_pair.count(v) == 2 ? first_pair << true : 3
+        end
+        return first_pair.include?(true) ? 2 : 6
+    end
+
     def three_match()
         copy_locator(3) ? 3 : 0
     end
