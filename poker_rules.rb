@@ -92,7 +92,7 @@ class Game
         unless ordered_array.length == 5
             ordered_array = non_uniq_hand_order(ordered_array)
         end
-        return ordered_array
+        @players[@player][:score][1] = ordered_array
     end
 
 
