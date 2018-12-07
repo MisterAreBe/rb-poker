@@ -120,13 +120,13 @@ class PokerRules < Minitest::Test
     def test_full_house
         temp = Game.new()
         temp.deck.hands.deal_in() # resets the players to blank
-        temp.deck.hands.take_cards("Player 1", Cards.new(["K", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "S"])) # The point of
         temp.deck.hands.take_cards("Player 1", Cards.new(["K", "C"])) # These 5 lines
         temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "D"])) # Are to test
-        temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["K", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "H"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        assert_equal(4, temp.full_house())
+        assert_equal(6, temp.full_house())
     end
 
 

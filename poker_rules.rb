@@ -55,6 +55,10 @@ class Game
         @suit_array.uniq.length == 1 ? 5 : 0
     end
 
+    def full_house()
+        copy_locator(3) && copy_locator(2) ? 6 : 0
+    end
+
 
     def find_hand_type()
         array_of_hand_methods = [single_pair(), two_pair(), three_match(), straight(), flush()]
