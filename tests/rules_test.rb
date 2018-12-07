@@ -272,5 +272,27 @@ class PokerRules < Minitest::Test
         assert_equal([6, 6, 4, 3, 2], temp.players["Player 1"][:score][1])
     end
 
+    def test_picking_winner
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "C"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.deck.hands.take_cards("Player 2", Cards.new(["2", "H"]))
+        temp.deck.hands.take_cards("Player 2", Cards.new(["3", "H"]))
+        temp.deck.hands.take_cards("Player 2", Cards.new(["9", "H"]))
+        temp.deck.hands.take_cards("Player 2", Cards.new(["6", "D"]))
+        temp.deck.hands.take_cards("Player 2", Cards.new(["6", "C"]))
+        temp.break_down(temp.players.keys[0])
+        temp.order_hand_hi_to_low(2)
+        temp.find_hand_type()
+        temp.break_down(temp.players.keys[1])
+        temp.order_hand_hi_to_low(2)
+        temp.find_hand_type()
+        assert_equal("Player 2 Wins!", temp.play())
+    end
+    
 
 end
