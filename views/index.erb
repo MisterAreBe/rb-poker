@@ -2,9 +2,9 @@
 <div class="player1">
         Player 1
     <div class="card_field">
-        <% if player1_cards.length == 5%>
-            <% player1_cards.each do |v| %>
-                <img class="cards" src="images/<%= v %>.png">
+        <% if player1[:hand].length == 5%>
+            <% player1[:hand].each do |v| %>
+                <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
             <% end %>
         <% else %>
             <% 5.times do %>
@@ -13,8 +13,7 @@
         <% end %>
     </div>
     <div class="player1_info">
-            <%= hand[1] %><br>
-            <%= high_card[1] %>
+            <%= player1[:type] %>
     </div>
  </div>
 <div class="deck">
@@ -30,9 +29,9 @@
 <div class="player2">
         Player 2
     <div class="card_field">
-        <% if player2_cards.length == 5%>
-            <% player2_cards.each do |v| %>
-                <img class="cards" src="images/<%= v %>.png">
+        <% if player2[:hand].length == 5%>
+            <% player2[:hand].each do |v| %>
+                <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
             <% end %>
         <% else %>
             <% 5.times do %>
@@ -41,8 +40,7 @@
         <% end %>
     </div>
     <div class="player2_info">
-        <%= hand[0] %><br>
-        <%= high_card[0] %>
+        <%= player2[:type] %>
     </div>
 </div>
 </div>
