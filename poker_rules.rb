@@ -18,7 +18,7 @@ class Game
         [@value_array, @suit_array]
     end
 
-    def copy_locator(copies=1)
+    def copy_locator(copies)
         @value_array.each do |v|
             if @value_array.count(v) == copies
                 return true
@@ -66,6 +66,35 @@ class Game
     def straight_flush()
         straight() + flush() == 9 ? 8 : 0
     end
+
+    def uniq_hand_order(copies)
+        ordered_array = []
+        temp_array = @value_array.sort.reverse
+        temp_array.each do |v|
+            if temp_array.count(v) == copies
+                ordered_array << v
+            end
+        end
+        return ordered_array
+    end
+
+    def non_uniq_hand_order(ordered_array)
+        temp_array = @value_array.sort.reverse - ordered_array
+        num = temp_array.length; temp_array.sort!
+        num.times do
+            ordered_array << temp_array.pop()
+        end
+        return ordered_array
+    end
+
+    def order_hand_hi_to_low(copies=1)
+        ordered_array = uniq_hand_order(copies)
+        unless ordered_array.length == 5
+            ordered_array = non_uniq_hand_order(ordered_array)
+        end
+        return ordered_array
+    end
+
 
     def find_hand_type()
         array_of_hand_methods = [straight_flush(), four_match(), full_house(), flush(), straight(), three_match(), two_pair(), single_pair()]
