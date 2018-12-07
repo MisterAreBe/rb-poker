@@ -129,7 +129,7 @@ class PokerRules < Minitest::Test
         assert_equal(6, temp.full_house())
     end
 
-    def test_gour_of_a_kind
+    def test_four_of_a_kind
         temp = Game.new()
         temp.deck.hands.deal_in() # resets the players to blank
         temp.deck.hands.take_cards("Player 1", Cards.new(["J", "S"])) # The point of
@@ -141,6 +141,17 @@ class PokerRules < Minitest::Test
         assert_equal(7, temp.four_match())
     end
 
+    def test_straight_flush
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["J", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["A", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "S"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["K", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        assert_equal(8, temp.straight_flush())
+    end
 
 
     def test_finding_single_pair_type
