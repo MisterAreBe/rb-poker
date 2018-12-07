@@ -38,9 +38,9 @@ class Game
         end
         hand_without_first_pair = @value_array.select {|v| first_pair[0] != v}
         hand_without_first_pair.each do |v|
-            hand_without_first_pair.count(v) == 2 ? first_pair << true : 3
+            hand_without_first_pair.count(v) == 2 ? first_pair << true : 0
         end
-        return first_pair.include?(true) ? 2 : 6
+        return first_pair.include?(true) ? 2 : 0
     end
 
     def three_match()
@@ -51,7 +51,7 @@ class Game
 
 
     def find_hand_type()
-        array_of_hand_methods = [single_pair(), three_match()]
+        array_of_hand_methods = [single_pair(), two_pair(), three_match()]
         score = 0
         array_of_hand_methods.each do |v|
             score = v
