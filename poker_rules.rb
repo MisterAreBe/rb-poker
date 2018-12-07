@@ -110,6 +110,50 @@ class Game
         @players[@player][:score][0] += score
     end
 
+    def convert_hand_score_to_high_card()
+        hand_to_high_card = {2 => [1, 2], 3 => [3, 6], 4 => [4]}
+        hand_to_high_card.each_pair do |k, v|
+            if v.include?(@players[@player][:score][0])
+                order_hand_hi_to_low(k)
+            end
+        end
+        if @players[@player][:score][1] == 0
+            order_hand_hi_to_low()
+        end
+    end
+
+    def compare_hand_types()
+        @players["Player 1"][:score][0] <=> @players["Player 2"][:score][0]
+    end
+
+    def compare_high_cards()
+        5.times do |v|
+            temp = @players["Player 1"][:score][1][v] <=> @players["Player 2"][:score][1][v]
+            if temp != 0
+            return temp
+            end
+        end
+    end
+
+    def compare_hands()
+        winner = {1 => "Player 1 Wins!", -1 => "Player 2 Wins!"}
+        if winner.has_key?(compare_hand_types())
+            return winner[compare_hand_types()]
+        elsif winner.has_key?(compare_high_cards())
+            return winner[compare_high_cards()]
+        else
+            return "It's a Tie!"
+        end
+    end
+
+    def play()
+        @players.keys.length.times do |v|
+            break_down(@players.keys[v])
+            find_hand_type()
+            convert_hand_score_to_high_card()
+        end
+        return compare_hands()
+    end
 
     attr_reader :players
     attr_reader :deck

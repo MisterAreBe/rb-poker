@@ -285,14 +285,25 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 2", Cards.new(["9", "H"]))
         temp.deck.hands.take_cards("Player 2", Cards.new(["6", "D"]))
         temp.deck.hands.take_cards("Player 2", Cards.new(["6", "C"]))
-        temp.break_down(temp.players.keys[0])
-        temp.order_hand_hi_to_low(2)
-        temp.find_hand_type()
-        temp.break_down(temp.players.keys[1])
-        temp.order_hand_hi_to_low(2)
-        temp.find_hand_type()
         assert_equal("Player 2 Wins!", temp.play())
     end
-    
 
+    def test_play_game
+        temp = Game.new()
+        temp.play()
+        hand = temp.players["Player 1"][:type]
+        highcard = temp.players["Player 1"][:score]
+        hand2 = temp.players["Player 2"][:type]
+        highcard2 = temp.players["Player 2"][:score]
+        p "Player 1's hand is a #{hand}, score: #{highcard}"
+        p "------------------------------------------------------"
+        p "Player 2's hand is a #{hand2}, score: #{highcard2}"
+        temp.players['Player 1'][:hand].each do |v|
+            print "#{v.card_name} "
+        end
+        temp.players['Player 2'][:hand].each do |v|
+            print "#{v.card_name} "
+        end
+        assert_equal(String, temp.play().class)
+    end
 end
