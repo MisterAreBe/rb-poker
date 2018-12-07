@@ -242,7 +242,10 @@ class PokerRules < Minitest::Test
         temp.break_down(temp.players.keys[0])
         temp.straight_flush(); temp.find_hand_type()
         assert_equal("Straight Flush", temp.players["Player 1"][:type])
+        assert_equal(8, temp.players["Player 1"][:score][0])
     end
+
+
 
 
 end
