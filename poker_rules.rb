@@ -47,6 +47,9 @@ class Game
         copy_locator(3) ? 3 : 0
     end
 
+    def straight()
+        @value_array.sort.each_cons(2).all? {|num1,num2| num2 == num1 + 1} ? 4 : 0
+    end
 
 
 
