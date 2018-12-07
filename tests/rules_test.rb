@@ -109,8 +109,8 @@ class PokerRules < Minitest::Test
         temp = Game.new()
         temp.deck.hands.deal_in() # resets the players to blank
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
-        temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "s"])) # These 5 lines
-        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "s"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["Q", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "S"])) # Are to test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])

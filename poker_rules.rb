@@ -51,10 +51,13 @@ class Game
         @value_array.sort.each_cons(2).all? {|num1,num2| num2 == num1 + 1} ? 4 : 0
     end
 
+    def flush()
+        @suit_array.uniq.length == 1 ? 5 : 0
+    end
 
 
     def find_hand_type()
-        array_of_hand_methods = [single_pair(), two_pair(), three_match()]
+        array_of_hand_methods = [single_pair(), two_pair(), three_match(), straight(), flush()]
         score = 0
         array_of_hand_methods.each do |v|
             score = v
@@ -62,7 +65,7 @@ class Game
                 break
             end
         end
-        array_of_hand_types = ["Crap Hand", "Single Pair", "Three of a Kind"]
+        array_of_hand_types = ["Crap Hand", "Single Pair", "Three of a Kind", "Straight", "Flush"]
         @players[@player][:type] = array_of_hand_types[score]
     end
 
