@@ -129,7 +129,17 @@ class PokerRules < Minitest::Test
         assert_equal(6, temp.full_house())
     end
 
-
+    def test_gour_of_a_kind
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["J", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["J", "C"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["J", "D"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["J", "H"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        assert_equal(7, temp.four_match())
+    end
 
 
 
