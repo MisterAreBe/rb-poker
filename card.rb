@@ -1,4 +1,3 @@
-require_relative "poker.rb"
 class Cards
     def initialize(card)
         @suit = {"S" => "Spades", "C" => "Clubs", "D" => "Diamonds", "H" => "Hearts"}

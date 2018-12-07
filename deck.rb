@@ -1,4 +1,4 @@
-require_relative "poker.rb"
+require_relative "hand.rb"
 class Poker_deck
     def initialize()
         values = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"]

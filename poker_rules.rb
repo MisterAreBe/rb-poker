@@ -1,4 +1,4 @@
-require_relative "poker.rb"
+require_relative "deck.rb"
 class Game
     def initialize(num_of_players=2)
         @deck = Poker_deck.new()
@@ -78,6 +78,7 @@ class Game
         end
         array_of_hand_types = ["Crap Hand", "Single Pair", "Two Pairs", "Three of a Kind", "Straight", "Flush", "Full House", "Four of a Kind", "Straight Flush"]
         @players[@player][:type] = array_of_hand_types[score]
+        @players[@player][:score][0] += score
     end
 
 
