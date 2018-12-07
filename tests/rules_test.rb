@@ -162,7 +162,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.single_pair(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Single Pair", temp.players["Player 1"][:type])
     end
 
@@ -175,7 +175,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["2", "H"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.three_match(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Three of a Kind", temp.players["Player 1"][:type])
     end
 
@@ -188,7 +188,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["7", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.straight(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Straight", temp.players["Player 1"][:type])
     end
 
@@ -201,7 +201,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.flush(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Flush", temp.players["Player 1"][:type])
     end
 
@@ -214,7 +214,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "H"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.full_house(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Full House", temp.players["Player 1"][:type])
     end
 
@@ -227,7 +227,7 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["3", "H"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.four_match(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Four of a Kind", temp.players["Player 1"][:type])
     end
 
@@ -240,12 +240,37 @@ class PokerRules < Minitest::Test
         temp.deck.hands.take_cards("Player 1", Cards.new(["5", "S"])) # A certian hand
         temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
         temp.break_down(temp.players.keys[0])
-        temp.straight_flush(); temp.find_hand_type()
+        temp.find_hand_type()
         assert_equal("Straight Flush", temp.players["Player 1"][:type])
         assert_equal(8, temp.players["Player 1"][:score][0])
     end
 
+    def test_finding_crap_hand_type
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["T", "H"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["A", "D"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["7", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.find_hand_type()
+        assert_equal("Crap Hand", temp.players["Player 1"][:type])
+        assert_equal(0, temp.players["Player 1"][:score][0])
+    end
 
+    def test_finding_the_high_card_of_a_given_hand
+        temp = Game.new()
+        temp.deck.hands.deal_in() # resets the players to blank
+        temp.deck.hands.take_cards("Player 1", Cards.new(["2", "S"])) # The point of
+        temp.deck.hands.take_cards("Player 1", Cards.new(["3", "S"])) # These 5 lines
+        temp.deck.hands.take_cards("Player 1", Cards.new(["4", "S"])) # Are to test
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "C"])) # A certian hand
+        temp.deck.hands.take_cards("Player 1", Cards.new(["6", "S"])) # Not a random one
+        temp.break_down(temp.players.keys[0])
+        temp.find_hand_type()
+        assert_equal([1, [6, 6, 4, 3, 2]], temp.players["Player 1"][:score])
+    end
 
 
 end
