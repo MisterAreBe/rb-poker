@@ -59,6 +59,9 @@ class Game
         copy_locator(3) && copy_locator(2) ? 6 : 0
     end
 
+    def four_match()
+        copy_locator(4) ? 7 : 0
+    end
 
     def find_hand_type()
         array_of_hand_methods = [single_pair(), two_pair(), three_match(), straight(), flush()]
