@@ -1,46 +1,46 @@
 <div class="big_box">
-<div class="player1">
-        Player 1
-    <div class="card_field">
-        <% if player1[:hand].length == 5%>
-            <% player1[:hand].each do |v| %>
-                <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
+    <div class="player1">
+            Player 1
+        <div class="card_field">
+            <% if player1[:hand].length == 5%>
+                <% player1[:hand].each do |v| %>
+                    <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
+                <% end %>
+            <% else %>
+                <% 5.times do %>
+                    <img class="cards" src="images/blank_card.png">
+                <% end %>
             <% end %>
-        <% else %>
-            <% 5.times do %>
-                <img class="cards" src="images/blank_card.png">
+        </div>
+        <div class="player1_info">
+                <%= player1[:type] %>
+        </div>
+    </div>
+    <div class="deck">
+        Click the Deck<br>
+        Below to Deal<br>
+        <form method="post" action="/load">
+            <input type="image" class="deal" src="images/deck.jpeg" border="0" alt="Submit">
+        </form>
+        <div class="winner">
+            <%= winner %>
+        </div>
+    </div>
+    <div class="player2">
+            Player 2
+        <div class="card_field">
+            <% if player2[:hand].length == 5%>
+                <% player2[:hand].each do |v| %>
+                    <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
+                <% end %>
+            <% else %>
+                <% 5.times do %>
+                    <img class="cards" src="images/blank_card.png">
+                <% end %>
             <% end %>
-        <% end %>
+        </div>
+        <div class="player2_info">
+            <%= player2[:type] %>
+        </div>
     </div>
-    <div class="player1_info">
-            <%= player1[:type] %>
-    </div>
- </div>
-<div class="deck">
-    Click the Deck<br>
-    Below to Deal<br>
-    <form method="post" action="/load">
-        <input type="image" class="deal" src="images/deck.jpeg" border="0" alt="Submit">
-    </form>
-    <div class="winner">
-        <%= winner %>
-    </div>
-</div>
-<div class="player2">
-        Player 2
-    <div class="card_field">
-        <% if player2[:hand].length == 5%>
-            <% player2[:hand].each do |v| %>
-                <img class="cards" src="images/<%="#{v.card_value}#{v.card_suit.slice(0)}"%>.png">
-            <% end %>
-        <% else %>
-            <% 5.times do %>
-                <img class="cards" src="images/blank_card.png">
-            <% end %>
-        <% end %>
-    </div>
-    <div class="player2_info">
-        <%= player2[:type] %>
-    </div>
-</div>
 </div>

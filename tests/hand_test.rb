@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative "../poker.rb"
+require_relative "../hand.rb"
 
 class Hand < Minitest::Test
 

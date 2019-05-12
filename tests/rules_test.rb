@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative "../poker.rb"
+require_relative "../poker_rules.rb"
 
 class PokerRules < Minitest::Test
 
@@ -295,12 +295,16 @@ class PokerRules < Minitest::Test
         highcard = temp.players["Player 1"][:score]
         hand2 = temp.players["Player 2"][:type]
         highcard2 = temp.players["Player 2"][:score]
+        p "------------------------------------------------------"
         p "Player 1's hand is a #{hand}, score: #{highcard}"
         p "------------------------------------------------------"
         p "Player 2's hand is a #{hand2}, score: #{highcard2}"
+        p "------------------------------------------------------"
+        print "Player 1's hand contains: "
         temp.players['Player 1'][:hand].each do |v|
             print "#{v.card_name} "
         end
+        print "\nPlayer 2's hand contains: "
         temp.players['Player 2'][:hand].each do |v|
             print "#{v.card_name} "
         end
